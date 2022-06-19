@@ -2,8 +2,6 @@ import React from 'react'
 
 export default function TaskTable(props){
 
-  const base = "countryflagsapi.com/"
-
   return (
     <div>
       <table className="table">
@@ -24,9 +22,15 @@ export default function TaskTable(props){
                 <td>{task.photo}</td>
                 <td>{task.name}</td>
                 <td>
-                  <img src={ base }+{task.country}  width="24" height="24" className="bi"  viewBox="0 0 16 16" role="img">
+                  <img src="
+                  https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 
-                {task.country}</td>
+                    alt="countryflag"
+                    width="24" 
+                    height="24" 
+                    className="bi"  
+                    viewBox="0 0 16 16" />
+                    <p>{task.country}</p></td>
                 <td>{task.role}</td>
                 <td><p>{task.email}</p>
                     <p>{task.phone}</p>
