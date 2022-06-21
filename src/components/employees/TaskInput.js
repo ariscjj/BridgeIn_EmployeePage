@@ -81,15 +81,33 @@ export default function TaskInput(props){
             className="form-control"
             placeholder="Phone" />
         </div>
+
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Status</label>
-          <input 
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            type="text" 
-            className="form-control"
-            placeholder="Status" />
+            <select 
+              class="form-select" 
+              aria-label="Default select example"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              type="text">
+              <option selected>Select...</option>
+              <option value="Hired">Hired</option>
+              <option value="Onboarding">Onboarding</option>
+              <option value="Employed">Employed</option>
+              <option value="Offboarding">Offboarding</option>
+              <option value="Terminating">Terminated</option>
+            </select>
         </div>
+
+{/*         <div className="mb-3"> */}
+{/*           <label for="exampleFormControlInput1" class="form-label">Status</label> */}
+{/*           <input */} 
+            {/* value={status} */}
+            {/* onChange={(e) => setStatus(e.target.value)} */}
+            {/* type="text" */} 
+{/*             className="form-control" */}
+{/*             placeholder="Status" /> */}
+{/*         </div> */}
 
         <button className="btn btn-outline-secondary" type="submit">
           Submit

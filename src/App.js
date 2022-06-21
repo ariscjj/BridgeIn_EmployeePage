@@ -59,9 +59,9 @@ export default function App() {
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
-        <h1>Task List</h1>
+        <h1>Employee List</h1>
         <hr></hr>
-        <p>Our simple task list</p>
+        <p>Add an Employee</p>
         <TaskInput onTaskCreate={onTaskCreate} />
         <TaskTable 
           tasks={tasks} />

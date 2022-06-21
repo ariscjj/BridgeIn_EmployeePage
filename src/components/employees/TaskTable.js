@@ -1,9 +1,37 @@
-import React from 'react'
+import React from 'react';
+
+import StatusBox from "../../common/StatusBox";
+
+
+
 export default function TaskTable(props){
   // const catURL = "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   const flagURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png";
   const gwURL = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJwDuMgkzmoaR8Vpzk0oiuxnb2Q9q5_S9Jqmbw%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1";
 
+  function colorStatus(status){
+//    console.log(status);
+    const base = "badge text-bg-"
+    if(status === "Hired"){
+      return base + "success"
+    }
+    else if(status === "Onboarding"){
+      return base + "warning"
+    }
+    else if(status === "Employed"){
+      return base + "primary"
+    }
+    else if(status === "Offboarding"){
+      return base + "info"
+    }
+    else if(status === "Terminated"){
+      return base+"secondary"
+    }
+    else{
+      return base+"dark"
+
+    };
+  };
 
   return (
     <div>
@@ -49,7 +77,14 @@ export default function TaskTable(props){
                        <b>Phone:</b> {task.phone}</p>
                 </td>
                 <td> 
-                  <p>{task.status}</p>
+                  <StatusBox 
+                    status={task.status}
+                    colorStatus = {colorStatus}
+                  >{task.status}</StatusBox>
+                  {/* <span className={colorStatus({task.status})}> */}
+                  {/* task.status */}
+                  {/* </span> */}
+                  {/* <p>{task.status}</p> */}
                 </td>
               </tr>
             )
