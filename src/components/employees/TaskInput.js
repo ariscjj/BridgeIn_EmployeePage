@@ -32,15 +32,8 @@ export default function TaskInput(props){
               id="inputGroupFile02"
               accept=".png, .jpg, .jpeg"
               value={photo}
-              onChange={(e) => setPhoto(e.target.result)} />
+              onChange={(e) => setPhoto(e.target.value)} />
           </div>
-          {/* <label for="exampleFormControlInput1" class="form-label">Photo</label> */}
-          {/* <input */} 
-          {/*   value={photo} */}
-          {/*   onChange={(e) => setPhoto(e.target.value)} */}
-          {/*   type="text" */} 
-          {/*   className="form-control" */}
-          {/*   placeholder="Photo" /> */}
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Name</label>

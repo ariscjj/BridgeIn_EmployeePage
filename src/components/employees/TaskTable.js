@@ -1,13 +1,9 @@
 import React from 'react'
-
 export default function TaskTable(props){
-  function readURL(result)
-  {
-    var reader = new FileReader(); 
-    reader.onload = document.getElementById("pfp").src = result;
-    reader.readAsDataURL(input.files[0])
+  // const catURL = "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+  const flagURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png";
+  const gwURL = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJwDuMgkzmoaR8Vpzk0oiuxnb2Q9q5_S9Jqmbw%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1";
 
-  }
 
   return (
     <div>
@@ -26,31 +22,31 @@ export default function TaskTable(props){
           {
             props.tasks.map((task) => 
               <tr key={task.id}>
-
-                <td>
+                <td className="col-1">
                   <img
-                    src=readURL{({task.photo})}
+                    src={gwURL}
                     alt="profile pic"
-                    width="24" 
-                    height="24" 
+                    width="30" 
+                    height="30" 
                     className="bi rounded-circle"  
                     viewBox="0 0 16 16" 
                   />
+                    <p>{task.photo}</p>
                 </td>
+
                 <td>{task.name}</td>
                 <td>
-                  <img src="
-                  https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
+                  <img src={flagURL}
                     alt="countryflag"
-                    width="24" 
-                    height="24" 
+                    width="40" 
+                    height="30" 
                     className="bi"  
-                    viewBox="0 0 16 16" />
+                    viewBox="0 0 16 24" />
                     <p>{task.country}</p></td>
                 <td>{task.role}</td>
-                <td><p>{task.email}</p>
-                    <p>{task.phone}</p>
+                <td><p><b>Email:</b> {task.email}
+                  <br />
+                       <b>Phone:</b> {task.phone}</p>
                 </td>
                 <td> 
                   <p>{task.status}</p>
