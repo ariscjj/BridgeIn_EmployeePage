@@ -1,6 +1,13 @@
 import React from 'react'
 
 export default function TaskTable(props){
+  function readURL(result)
+  {
+    var reader = new FileReader(); 
+    reader.onload = document.getElementById("pfp").src = result;
+    reader.readAsDataURL(input.files[0])
+
+  }
 
   return (
     <div>
@@ -19,7 +26,17 @@ export default function TaskTable(props){
           {
             props.tasks.map((task) => 
               <tr key={task.id}>
-                <td>{task.photo}</td>
+
+                <td>
+                  <img
+                    src=readURL{({task.photo})}
+                    alt="profile pic"
+                    width="24" 
+                    height="24" 
+                    className="bi rounded-circle"  
+                    viewBox="0 0 16 16" 
+                  />
+                </td>
                 <td>{task.name}</td>
                 <td>
                   <img src="
@@ -35,7 +52,9 @@ export default function TaskTable(props){
                 <td><p>{task.email}</p>
                     <p>{task.phone}</p>
                 </td>
-                <td>{task.jobStatus}</td>
+                <td> 
+                  <p>{task.status}</p>
+                </td>
               </tr>
             )
           }

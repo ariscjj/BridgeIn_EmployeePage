@@ -6,7 +6,7 @@ export class Task {
     role,
     email,
     phone,
-    jobStatus
+    status
   ){
     this.photo = photo; 
     this.name = name; 
@@ -14,6 +14,6 @@ export class Task {
     this.role = role;
     this.email = email;
     this.phone = phone;
-    this.jobStatus = jobStatus
+    this.status = status
   }
 }

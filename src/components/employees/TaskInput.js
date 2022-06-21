@@ -7,30 +7,40 @@ export default function TaskInput(props){
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [jobStatus, setJobStatus] = useState("");
+  const [status, setStatus] = useState("");
 
   function onTaskFormSubmit(e){
     e.preventDefault();
-    props.onTaskCreate(photo, name, country, role, email, phone, jobStatus);
+    props.onTaskCreate(photo, name, country, role, email, phone, status);
     setPhoto('');
     setName('');
     setCountry('');
     setRole('');
     setEmail('');
     setPhone('');
-    setJobStatus('');
+    setStatus('');
   }
   return (
     <div>
       <form onSubmit={onTaskFormSubmit}>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Photo</label>
-          <input 
-            value={photo}
-            onChange={(e) => setPhoto(e.target.value)}
-            type="text" 
-            className="form-control"
-            placeholder="Photo" />
+          <div className="input-group mb-3">
+            <input 
+              type="file" 
+              class="form-control" 
+              id="inputGroupFile02"
+              accept=".png, .jpg, .jpeg"
+              value={photo}
+              onChange={(e) => setPhoto(e.target.result)} />
+          </div>
+          {/* <label for="exampleFormControlInput1" class="form-label">Photo</label> */}
+          {/* <input */} 
+          {/*   value={photo} */}
+          {/*   onChange={(e) => setPhoto(e.target.value)} */}
+          {/*   type="text" */} 
+          {/*   className="form-control" */}
+          {/*   placeholder="Photo" /> */}
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -81,11 +91,11 @@ export default function TaskInput(props){
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Status</label>
           <input 
-            value={jobStatus}
-            onChange={(e) => setJobStatus(e.target.value)}
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
             type="text" 
             className="form-control"
-            placeholder="JobStatus" />
+            placeholder="Status" />
         </div>
 
         <button className="btn btn-outline-secondary" type="submit">

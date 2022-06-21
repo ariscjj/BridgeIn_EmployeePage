@@ -12,14 +12,14 @@ import { Task } from './models/task.js';
 
 
 //import components from components folder
-import TaskTable from './components/TaskTable';
+import TaskTable from './components/employees/TaskTable';
 
-import TaskInput from './components/TaskInput'; 
+import TaskInput from './components/employees/TaskInput'; 
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
 
-  function onTaskCreate(photo, name, country, email, phone, jobStatus) {
+  function onTaskCreate(photo, name, country, role, email, phone, status) {
     // add the task to the tasks state 
 
     //create the task 
@@ -27,9 +27,10 @@ export default function App() {
       photo, 
       name,
       country,
+      role,
       email,
       phone,
-      jobStatus
+      status
     )
 
     setTasks([...tasks, task]); 
