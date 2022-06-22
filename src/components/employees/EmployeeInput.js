@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 
-export default function TaskInput(props){
+export default function EmployeeInput(props){
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState(""); 
   const [country, setCountry] = useState("");
@@ -9,9 +9,9 @@ export default function TaskInput(props){
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
 
-  function onTaskFormSubmit(e){
+  function onEmployeeFormSubmit(e){
     e.preventDefault();
-    props.onTaskCreate(photo, name, country, role, email, phone, status);
+    props.onEmployeeCreate(photo, name, country, role, email, phone, status);
     setPhoto('');
     setName('');
     setCountry('');
@@ -22,7 +22,7 @@ export default function TaskInput(props){
   }
   return (
     <div>
-      <form onSubmit={onTaskFormSubmit}>
+      <form onSubmit={onEmployeeFormSubmit}>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Photo</label>
           <div className="input-group mb-3">

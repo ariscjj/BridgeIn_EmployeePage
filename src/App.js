@@ -6,35 +6,35 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import './App.css'; 
 
-//import the Task class from the models folder 
-import { Task } from './models/task.js';
+//import the Employee class from the models folder 
+import { Employee } from './models/employee.js';
 
-import TaskService from './services/task.service.js'; 
+import EmployeeService from './services/employee.service.js'; 
 
 //import components from components folder
-import TaskTable from './components/employees/TaskTable';
+import EmployeeTable from './components/employees/EmployeeTable';
 
-import TaskInput from './components/employees/TaskInput'; 
+import EmployeeInput from './components/employees/EmployeeInput'; 
 
 export default function App() {
-  const [tasks, setTasks] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    if (!tasks.length){
+    if (!employees.length){
       onInitialLoad(); 
     }
   }, []); 
 
   async function onInitialLoad(){
-    const tasks = await TaskService.fetchTasks(); 
-    setTasks(tasks);
+    const employees = await EmployeeService.fetchEmployees(); 
+    setEmployees(employees);
   }
 
-  async function onTaskCreate(photo, name, country, role, email, phone, status) {
-    // add the task to the tasks state 
-    //create the task 
-    const task = await TaskService.createTask(
-      new Task(
+  async function onEmployeeCreate(photo, name, country, role, email, phone, status) {
+    // add the employee to the employees state 
+    //create the employee 
+    const employee = await EmployeeService.createEmployee(
+      new Employee(
         null,
         photo, 
         name,
@@ -44,7 +44,7 @@ export default function App() {
         phone,
         status
     ));
-    setTasks([...tasks, task]); 
+    setEmployees([...employees, employee]); 
   }
 
   return (
@@ -53,9 +53,9 @@ export default function App() {
         <h1>Employee List</h1>
         <hr></hr>
         <p>Add an Employee</p>
-        <TaskInput onTaskCreate={onTaskCreate} />
-        <TaskTable 
-          tasks={tasks} />
+        <EmployeeInput onEmployeeCreate={onEmployeeCreate} />
+        <EmployeeTable 
+          employees={employees} />
       </div>
     </div>
   )
