@@ -98,17 +98,6 @@ export default function TaskInput(props){
               <option value="Terminating">Terminated</option>
             </select>
         </div>
-
-{/*         <div className="mb-3"> */}
-{/*           <label for="exampleFormControlInput1" class="form-label">Status</label> */}
-{/*           <input */} 
-            {/* value={status} */}
-            {/* onChange={(e) => setStatus(e.target.value)} */}
-            {/* type="text" */} 
-{/*             className="form-control" */}
-{/*             placeholder="Status" /> */}
-{/*         </div> */}
-
         <button className="btn btn-outline-secondary" type="submit">
           Submit
         </button> 

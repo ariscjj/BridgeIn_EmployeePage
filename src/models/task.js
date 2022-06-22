@@ -1,5 +1,6 @@
 export class Task {
   constructor(
+    id,
     photo, 
     name,
     country,
@@ -8,6 +9,7 @@ export class Task {
     phone,
     status
   ){
+    this.id = id;
     this.photo = photo; 
     this.name = name; 
     this.country = country; 

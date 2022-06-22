@@ -39,10 +39,10 @@ export default function TaskTable(props){
         <thead>
           <tr>
             <th>Photo</th>
-            <th>Employee Name</th>
+            <th>Name</th>
             <th>Country</th>
             <th>Role</th>
-            <th>Contact Info</th>
+            <th>Contact</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -50,7 +50,7 @@ export default function TaskTable(props){
           {
             props.tasks.map((task) => 
               <tr key={task.id}>
-                <td className="col-1">
+                <td>
                   <img
                     src={gwURL}
                     alt="profile pic"
@@ -59,7 +59,7 @@ export default function TaskTable(props){
                     className="bi rounded-circle"  
                     viewBox="0 0 16 16" 
                   />
-                    <p>{task.photo}</p>
+                    {/* <p>{task.photo}</p> */}
                 </td>
 
                 <td>{task.name}</td>
@@ -81,10 +81,6 @@ export default function TaskTable(props){
                     status={task.status}
                     colorStatus = {colorStatus}
                   >{task.status}</StatusBox>
-                  {/* <span className={colorStatus({task.status})}> */}
-                  {/* task.status */}
-                  {/* </span> */}
-                  {/* <p>{task.status}</p> */}
                 </td>
               </tr>
             )
