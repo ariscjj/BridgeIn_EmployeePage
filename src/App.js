@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import boostrap from node modules 
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -6,69 +6,58 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import './App.css'; 
 
+//import the Employee class from the models folder 
+import { Employee } from './models/employee.js';
 
-//import the Task class from the models folder 
-import { Task } from './models/task.js';
-
+import EmployeeService from './services/employee.service.js'; 
 
 //import components from components folder
-import TaskTable from './components/TaskTable';
+import EmployeeTable from './components/employees/EmployeeTable';
 
-import TaskInput from './components/TaskInput'; 
+import EmployeeInput from './components/employees/EmployeeInput'; 
 
 export default function App() {
-  const [tasks, setTasks] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
-  function onTaskCreate(photo, name, address, city, postalCode, country, email, phone, jobStatus) {
-    // add the task to the tasks state 
+  useEffect(() => {
+    if (!employees.length){
+      onInitialLoad(); 
+    }
+  }, []); 
 
-    //create the task 
-    const task = new Task(
-      photo, 
-      name,
-      address, 
-      city,
-      postalCode,
-      country,
-      email,
-      phone,
-      jobStatus
-    )
-
-    setTasks([...tasks, task]); 
+  async function onInitialLoad(){
+    const employees = await EmployeeService.fetchEmployees(); 
+    setEmployees(employees);
   }
 
-  //function onTaskCompleteToggle(taskId){
-  //  //toggle the task completed state
-  //  // update the tasks state with the new updates state 
-    
-
-  //  const taskToToggle = tasks.find((task) => task.id === taskId); 
-  //  taskToToggle.complete = !taskToToggle.complete; 
-
-  //  setTasks(tasks.map((task) => {
-  //    return task.id === taskId ?  taskToToggle : task; 
-  //  })); 
-  //}
-
-
-//   function onTaskRemove(taskId) {
-//     // filter the tasks to keep tasks which don't have the id passed in 
-//     // update the task state with the filtered list 
-//     setTasks(tasks.filter((task) => task.id !== taskId)); 
-//   }
+  async function onEmployeeCreate(photo, name, country, role, email, phone, status) {
+    // add the employee to the employees state 
+    //create the employee 
+    const employee = await EmployeeService.createEmployee(
+      new Employee(
+        null,
+        photo, 
+        name,
+        country,
+        role,
+        email,
+        phone,
+        status
+    ));
+    employees.set(employee);
+    setEmployees([...employees, employee]); 
+  }
 
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
-        <h1>Task List</h1>
+        <h1>Employee List</h1>
         <hr></hr>
-        <p>Our simple task list</p>
-        <TaskInput onTaskCreate={onTaskCreate} />
-        <TaskTable 
-          tasks={tasks} />
+        <p>Add an Employee</p>
+        <EmployeeInput onEmployeeCreate={onEmployeeCreate} />
+        <EmployeeTable 
+          employees={employees} />
       </div>
-
     </div>
   )
 
