@@ -19,13 +19,16 @@ import TaskInput from './components/TaskInput';
 export default function App() {
   const [tasks, setTasks] = useState([]);
 
-  function onTaskCreate(photo, name, country, email, phone, jobStatus) {
+  function onTaskCreate(photo, name, address, city, postalCode, country, email, phone, jobStatus) {
     // add the task to the tasks state 
 
     //create the task 
     const task = new Task(
       photo, 
       name,
+      address, 
+      city,
+      postalCode,
       country,
       email,
       phone,
