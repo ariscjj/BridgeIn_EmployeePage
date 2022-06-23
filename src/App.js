@@ -30,7 +30,7 @@ export default function App() {
     setEmployees(employees);
   }
 
-  async function onEmployeeCreate(photo, name, country, role, email, phone, status) {
+  async function onEmployeeCreate(photo, name, birthday, address, city, postalCode, country, role, email, phone, status) {
     // add the employee to the employees state 
     //create the employee 
     const employee = await EmployeeService.createEmployee(
@@ -38,6 +38,10 @@ export default function App() {
         null,
         photo, 
         name,
+        birthday,
+        address,
+        city,
+        postalCode,
         country,
         role,
         email,

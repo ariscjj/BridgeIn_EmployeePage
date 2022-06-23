@@ -11,22 +11,11 @@ export default function EmployeeInput(props){
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-<<<<<<< HEAD:src/components/TaskInput.js
-  const [jobStatus, setJobStatus] = useState("");
-  
-
-
-=======
   const [status, setStatus] = useState("");
->>>>>>> 3f7569cad28d7a439b2a5bc7ab0707e0c14a94dd:src/components/employees/EmployeeInput.js
 
   function onEmployeeFormSubmit(e){
     e.preventDefault();
-<<<<<<< HEAD:src/components/TaskInput.js
-    props.onTaskCreate(photo, name, birthday, address, city, postalCode, country, role, email, phone, jobStatus);
-=======
-    props.onEmployeeCreate(photo, name, country, role, email, phone, status);
->>>>>>> 3f7569cad28d7a439b2a5bc7ab0707e0c14a94dd:src/components/employees/EmployeeInput.js
+    props.onTaskCreate(photo, name, birthday, address, city, postalCode, country, role, email, phone, status);
     setPhoto('');
     setName('');
     setBirthday('');
