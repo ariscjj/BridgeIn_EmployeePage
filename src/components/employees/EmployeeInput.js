@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; 
 
 export default function EmployeeInput(props){
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState(""); 
   const [country, setCountry] = useState("");
   const [role, setRole] = useState("");
@@ -12,7 +12,7 @@ export default function EmployeeInput(props){
   function onEmployeeFormSubmit(e){
     e.preventDefault();
     props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-    setPhoto('');
+    setPhoto(null);
     setName('');
     setCountry('');
     setRole('');
@@ -20,6 +20,15 @@ export default function EmployeeInput(props){
     setPhone('');
     setStatus('');
   }
+
+  function onFileSelected(e) {
+    if (e.target.files.length){
+      setPhoto(e.target.files[0]);
+    } else {
+      setPhoto(null);
+    }
+  }
+
   return (
     <div>
       <form onSubmit={onEmployeeFormSubmit}>
@@ -31,8 +40,7 @@ export default function EmployeeInput(props){
               class="form-control" 
               id="inputGroupFile02"
               accept=".png, .jpg, .jpeg"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)} />
+              onChange={(e) => onFileSelected(e)} />
           </div>
         </div>
         <div className="mb-3">
