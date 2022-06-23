@@ -36,6 +36,7 @@ export default function App() {
     setEmployees(employees);
   }
 
+<<<<<<< HEAD
   async function onEmployeeCreate(photo, name, country, role, email, phone, status) {
     try {
       // upload the file
@@ -43,17 +44,27 @@ export default function App() {
         console.log('Upload Progress: ', progress);
       });
     
+=======
+  async function onEmployeeCreate(photo, name, birthday, address, city, postalCode, country, role, email, phone, status) {
+    // add the employee to the employees state 
+    //create the employee 
+>>>>>>> ceba7f99338031fbf59f6419c4c92cd1959f0d8a
     const employee = await EmployeeService.createEmployee(
       new Employee(
         downloadUrl,
         photo, 
         name,
+        birthday,
+        address,
+        city,
+        postalCode,
         country,
         role,
         email,
         phone,
         status
     ));
+    employees.set(employee);
     setEmployees([...employees, employee]); 
 
     // navigate('/');

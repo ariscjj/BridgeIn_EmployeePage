@@ -7,7 +7,11 @@ export class Employee {
     role,
     email,
     phone,
-    status
+    status,
+    birthday,
+    address,
+    city,
+    postalCode
   ){
     this.id = id;
     this.photo = photo; 
@@ -16,6 +20,10 @@ export class Employee {
     this.role = role;
     this.email = email;
     this.phone = phone;
-    this.status = status
+    this.status = status;
+    this.birthday = birthday;
+    this.address = address;
+    this.city = city;
+    this.postalCode = postalCode;
   }
 }
