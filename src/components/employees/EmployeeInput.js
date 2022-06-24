@@ -1,6 +1,17 @@
 import React, { useState } from 'react'; 
+import { useNavigate, Link } from 'react-router-dom';
 
-export default function EmployeeInput(props){
+import EmployeeService from '../../services/employee.service';
+
+import FileService from '../../services/file.service';
+
+import { Employee } from '../../models/employee.js';
+
+
+
+export default function EmployeeInput(){
+  const navigate = useNavigate();
+
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState(""); 
   const [country, setCountry] = useState("");
@@ -8,18 +19,33 @@ export default function EmployeeInput(props){
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
+  const [employees, setEmployees] = useState([]);
 
-  function onEmployeeFormSubmit(e){
-    e.preventDefault();
-    props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-    console.log("CREATING EMPLOYEE");
-    setPhoto(null);
-    setName('');
-    setCountry('');
-    setRole('');
-    setEmail('');
-    setPhone('');
-    setStatus('');
+  async function onEmployeeFormSubmit(e) {
+    // add the employee to the employees state 
+    //create the employee 
+    try {
+      const downloadUrl = await FileService.uploadImage(photo, (progress) => {
+        console.log('Upload Progress: ', progress);
+      });
+
+      const employee = await EmployeeService.createEmployee(
+        new Employee({
+          id: null,
+          photo: downloadUrl, 
+          name: name,
+          country: country,
+          role: role,
+          email: email,
+          phone: phone,
+          status: status
+        }));
+      setEmployees([...employees, employee]);
+      navigate('employee-list');
+
+    } catch (err) {
+      // TODO handle this
+    }
   }
 
   function onFileSelected(e) {

@@ -1,9 +1,29 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import StatusBox from "../../common/StatusBox";
+// import { Link } from 'react-router-dom';
 
 
-export default function EmployeeTable(props){
+import EmployeeService from '../../services/employee.service';
+
+
+export default function EmployeeTable(){
+  const [employees, setEmployees] = useState([]); 
+
+  useEffect(() => {
+    fetchEmployees()
+  }, []);
+
+  async function fetchEmployees(){
+    try{
+      const employees = await EmployeeService.fetchEmployees();
+      setEmployees(employees);
+    } catch(err){
+
+    }
+  
+  }
+
+
   // const catURL = "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   const flagURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png";
   const gwURL = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJwDuMgkzmoaR8Vpzk0oiuxnb2Q9q5_S9Jqmbw%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1";
@@ -47,7 +67,7 @@ export default function EmployeeTable(props){
         </thead>
         <tbody>
           {
-            props.employees.map((employee) => 
+            employees.map((employee) => 
               <tr key={employee.id}>
                 <td>
                   <img
