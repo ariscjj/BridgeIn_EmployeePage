@@ -1,7 +1,10 @@
 import React, { useState } from 'react'; 
-import ReactFlagsSelect from "react-flags-select";
+import FileService from '../../services/file.service.js';
+// import { useNavigate } from 'react-router-dom';
 
 export default function EmployeeInput(props){
+  // const navigate = useNavigate();
+
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState(""); 
   const [country, setCountry] = useState("");
@@ -13,7 +16,6 @@ export default function EmployeeInput(props){
   function onEmployeeFormSubmit(e){
     e.preventDefault();
     props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-    console.log("CREATING EMPLOYEE");
     setPhoto(null);
     setName('');
     setCountry('');
@@ -23,6 +25,27 @@ export default function EmployeeInput(props){
     setStatus('');
   }
 
+//   async function onEmployeeFormSubmit(e){
+//     e.preventDefault();
+//     try {
+//       // upload the file
+//       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
+//         console.log('Upload Progress: ', progress);
+//       });
+//         await props.onEmployeeCreate(downloadUrl, name, country, role, email, phone, status);
+
+//     setPhoto(null);
+//     setName('');
+//     setCountry('');
+//     setRole('');
+//     setEmail('');
+//     setPhone('');
+//     setStatus('');
+//     navigate('/');
+//   } catch(err){ 
+
+//   }
+// }
   function onFileSelected(e) {
     if (e.target.files.length){
       setPhoto(e.target.files[0]);
@@ -30,6 +53,8 @@ export default function EmployeeInput(props){
       setPhoto(null);
     }
   }
+
+
 
   return (
     <div>
@@ -56,20 +81,13 @@ export default function EmployeeInput(props){
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Country</label>
-          <ReactFlagsSelect
+          <input 
             value={country}
-            searchable={true}
-            selected={country}
-            onSelect={(country) => setCountry(country)}
-          />
+            onChange={(e) => setCountry(e.target.value)}
 
-          {/* <input */} 
-          {/*   value={country} */}
-          {/*   onChange={(e) => setCountry(e.target.value)} */}
-
-          {/*   type="text" */} 
-          {/*   className="form-control" */}
-          {/*   placeholder="Country" /> */}
+            type="text" 
+            className="form-control"
+            placeholder="Country" />
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Role</label>

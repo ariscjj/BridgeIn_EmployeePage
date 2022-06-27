@@ -52,7 +52,7 @@ export default function EmployeeTable(props){
               <tr key={employee.id}>
                 <td>
                   <img
-                    src={gwURL}
+                    src={employee.photo}
                     alt="profile pic"
                     width="30" 
                     height="30" 

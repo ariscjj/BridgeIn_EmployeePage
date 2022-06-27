@@ -10,6 +10,7 @@ import './App.css';
 import { Employee } from './models/employee.js';
 
 import EmployeeService from './services/employee.service.js'; 
+import FileService from './services/file.service';
 
 //import components from components folder
 import EmployeeTable from './components/employees/EmployeeTable';
@@ -33,19 +34,34 @@ export default function App() {
   async function onEmployeeCreate(photo, name, country, role, email, phone, status) {
     // add the employee to the employees state 
     //create the employee 
-    const employee = await EmployeeService.createEmployee(
-      new Employee(
-        null,
-        photo, 
-        name,
-        country,
-        role,
-        email,
-        phone,
-        status
-    ));
-    setEmployees([...employees, employee]); 
+    try {
+      const downloadUrl = await FileService.uploadImage(photo, (progress) => {
+        console.log('Upload Progress: ', progress);
+      });
+
+      const employee = await EmployeeService.createEmployee(
+        new Employee(
+          null,
+          downloadUrl, 
+          name,
+          country,
+          role,
+          email,
+          phone,
+          status
+      ));
+      setEmployees([...employees, employee]);
+
+    } catch (err) {
+      // TODO handle this
+    }
   }
+
+  // async function uploadFile(photo) {
+  //   return FileService.uploadImage(photo, (progress) => {
+  //     console.log(progress);
+  //   });
+  // }
 
   return (
     <div className="container my-5">
