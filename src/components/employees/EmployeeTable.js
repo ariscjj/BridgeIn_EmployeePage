@@ -1,4 +1,5 @@
 import React from 'react';
+import Flag from "react-world-flags";
 
 import StatusBox from "../../common/StatusBox";
 
@@ -63,12 +64,14 @@ export default function EmployeeTable(props){
 
                 <td>{employee.name}</td>
                 <td>
-                  <img src={flagURL}
-                    alt="countryflag"
-                    width="40" 
-                    height="30" 
-                    className="bi"  
-                    viewBox="0 0 16 24" />
+                  <Flag code={employee.country} width="40" />
+
+                  {/* <img src={flagURL} */}
+                  {/*   alt="countryflag" */}
+                  {/*   width="40" */} 
+                  {/*   height="30" */} 
+                  {/*   className="bi" */}  
+                  {/*   viewBox="0 0 16 24" /> */}
                     <p>{employee.country}</p></td>
                 <td>{employee.role}</td>
                 <td><p><b>Email:</b> {employee.email}

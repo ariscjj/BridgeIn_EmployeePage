@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import ReactFlagsSelect from "react-flags-select";
 
 export default function EmployeeInput(props){
   const [photo, setPhoto] = useState("");
@@ -46,13 +47,20 @@ export default function EmployeeInput(props){
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Country</label>
-          <input 
+          <ReactFlagsSelect
             value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            searchable={true}
+            selected={country}
+            onSelect={(country) => setCountry(country)}
+          />
 
-            type="text" 
-            className="form-control"
-            placeholder="Country" />
+          {/* <input */} 
+          {/*   value={country} */}
+          {/*   onChange={(e) => setCountry(e.target.value)} */}
+
+          {/*   type="text" */} 
+          {/*   className="form-control" */}
+          {/*   placeholder="Country" /> */}
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Role</label>
