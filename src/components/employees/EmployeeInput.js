@@ -63,13 +63,6 @@ export default function EmployeeInput(props){
             onSelect={(country) => setCountry(country)}
           />
 
-          {/* <input */} 
-          {/*   value={country} */}
-          {/*   onChange={(e) => setCountry(e.target.value)} */}
-
-          {/*   type="text" */} 
-          {/*   className="form-control" */}
-          {/*   placeholder="Country" /> */}
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Role</label>
