@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Flag from "react-world-flags";
 
 import StatusBox from "../../common/StatusBox";
+import EmployeeService from '../../services/employee.service.js'; 
 
 
-export default function EmployeeTable(props){
-  // const catURL = "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
-  const flagURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/2560px-Flag_of_the_United_States.svg.png";
-  const gwURL = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJwDuMgkzmoaR8Vpzk0oiuxnb2Q9q5_S9Jqmbw%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1";
+export default function EmployeeTable(){
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    if (!employees.length){
+      onInitialLoad(); 
+    }
+  }, []); 
+
+  async function onInitialLoad(){
+    const employees = await EmployeeService.fetchEmployees(); 
+    setEmployees(employees);
+  }
+
+
 
   function colorStatus(status){
 //    console.log(status);
@@ -34,44 +46,37 @@ export default function EmployeeTable(props){
   };
 
   return (
-    <div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Role</th>
-            <th>Contact</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            props.employees.map((employee) => 
-              <tr key={employee.id}>
-                <td>
-                  <img
-                    src={employee.photo}
-                    alt="profile pic"
-                    width="30" 
-                    height="30" 
-                    className="bi rounded-circle"  
-                    viewBox="0 0 16 16" 
-                  />
-                    {/* <p>{employee.photo}</p> */}
-                </td>
+    <div className="container my-5">
+      <div className="card card-body text-center">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Country</th>
+              <th>Role</th>
+              <th>Contact</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              employees.map((employee) => 
+                <tr key={employee.id}>
+                  <td>
+                    <img
+                      src={employee.photo}
+                      alt="profile pic"
+                      width="30" 
+                      height="30" 
+                      className="bi rounded-circle"  
+                      viewBox="0 0 16 16" 
+                    />
+                  </td>
 
                 <td>{employee.name}</td>
                 <td>
                   <Flag code={employee.country} width="40" />
-
-                  {/* <img src={flagURL} */}
-                  {/*   alt="countryflag" */}
-                  {/*   width="40" */} 
-                  {/*   height="30" */} 
-                  {/*   className="bi" */}  
-                  {/*   viewBox="0 0 16 24" /> */}
                     <p>{employee.country}</p></td>
                 <td>{employee.role}</td>
                 <td><p><b>Email:</b> {employee.email}
@@ -89,8 +94,8 @@ export default function EmployeeTable(props){
           }
         </tbody>
       </table>
-
     </div>
+  </div>
 
   )
 
