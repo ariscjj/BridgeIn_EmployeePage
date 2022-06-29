@@ -20,6 +20,10 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link active" to="/employee-table">Employee Table</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/employee-edit">Employee Edit</Link>
+            </li>
+
           </ul>
         </div>
       </div>

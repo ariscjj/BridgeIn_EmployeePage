@@ -11,6 +11,7 @@ import FileService from '../../services/file.service';
 
 
 export default function EmployeeInput(props){
+  const [id, setId] = useState("");
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState(""); 
   const [country, setCountry] = useState("");
@@ -29,58 +30,51 @@ export default function EmployeeInput(props){
   async function onInitialLoad(){
     const employees = await EmployeeService.fetchEmployees(); 
     setEmployees(employees);
-  }
+  };
 
 
   async function onEmployeeFormSubmit(e) {
-    // add the employee to the employees state 
-    //create the employee 
-    e.preventDefault();
-
+   // add the employee to the employees state 
+   //create the employee 
+  e.preventDefault();
     try {
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
-        console.log('Upload Progress: ', progress);
-      });
+       console.log('Upload Progress: ', progress);
+     });
+      console.log("editing Empt")
+      console.log(id)
+      console.log(name)
 
-      const employee = await EmployeeService.createEmployee(
-        new Employee(
-          null,
-          downloadUrl, 
-          name,
-          country,
-          role,
-          email,
-          phone,
-          status
-      ));
-      console.log("CREATED EMPLOYEE");
-      setEmployees([...employees, employee]);
-      setPhoto(null);
-      setName('');
-      setCountry('');
-      setRole('');
-      setEmail('');
-      setPhone('');
-      setStatus('');
+     const editedEmp = employees.find((employee) => employee.id === id);
+      console.log("EDITING");
+      console.log(editedEmp);
+      console.log(editedEmp.name)
+     editedEmp.name = name;
+      console.log(editedEmp.name);
+     editedEmp.photo = downloadUrl;
+     editedEmp.country = country;
+     editedEmp.role = role;
+     editedEmp.email = email; 
+     editedEmp.phone = phone; 
+     editedEmp.status = status; 
+
+     await EmployeeService.updateEmployee(editedEmp);
+      console.log("done editing emp");
+
+     setPhoto(null);
+     setName('');
+     setCountry('');
+     setRole('');
+     setEmail('');
+     setPhone('');
+     setStatus('');
 
 
-    } catch (err) {
-      // TODO handle this
-    }
-  }
+   } catch (err) {
+     // TODO handle this
+   }
+ }
 
-
-//   function onEmployeeFormSubmit(e){
-//     props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-//     console.log("CREATING EMPLOYEE");
-//     setPhoto(null);
-//     setName('');
-//     setCountry('');
-//     setRole('');
-//     setEmail('');
-//     setPhone('');
-//     setStatus('');
-//   }
 
   function onFileSelected(e) {
     if (e.target.files.length){
@@ -93,8 +87,23 @@ export default function EmployeeInput(props){
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
-        <h5 class="card-title">Add an Employee</h5>
+        <h5 class="card-title">Edit an Employee</h5>
         <form onSubmit={onEmployeeFormSubmit}>
+          <div className="mb-3">
+            <select 
+              className="form-select" 
+              aria-label="Default select example"
+              searchable={true}
+              onChange={(e) => setId(e.target.value)}>
+            <option selected>Select employee to edit</option>
+              {
+                employees.map((employee) => 
+                <option value={ employee.id }> { employee.name }</option>
+                )
+              }
+            </select>
+          </div>
+
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Photo</label>
             <div className="input-group mb-3">

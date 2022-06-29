@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import NavBar from './common/NavBar';
 import EmployeeInput from './components/employees/EmployeeInput'
 import EmployeeTable from './components/employees/EmployeeTable'
+import EmployeeEdit from './components/employees/EmployeeEdit'
 
 
 export default function App() {
@@ -16,6 +17,8 @@ export default function App() {
       <Routes>
         <Route path='add-employee' element={<EmployeeInput />} />
         <Route path='employee-table' element={<EmployeeTable />} />
+        <Route path='employee-edit' element={<EmployeeEdit/>} />
+
         <Route />
       </Routes>
     </BrowserRouter>

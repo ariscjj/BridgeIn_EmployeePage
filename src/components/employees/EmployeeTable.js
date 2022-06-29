@@ -48,6 +48,7 @@ export default function EmployeeTable(){
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
+        <h5 className="card-title">Employees</h5>
         <table className="table">
           <thead>
             <tr>

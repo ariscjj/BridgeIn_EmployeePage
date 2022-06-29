@@ -16,18 +16,34 @@ class EmployeeService {
 
   async createEmployee(employee) {
     const collectionRef = collection(db, this.collection);
+    console.log("got colloection")
+    const d = new Date();
+    let time = d.getTime();
+    console.log(time);
+    const docRef = await addDoc(collectionRef, 
+      {
+        id: time,
+        photo: employee.photo,
+        name: employee.name,
+        country: employee.country,
+        role: employee.role,
+        email: employee.email,
+        phone: employee.phone,
+        status: employee.status
+      }
+    );
 
-    const docRef = await addDoc(collectionRef, {
-      photo: employee.photo,
-      name: employee.name,
-      country: employee.country,
-      role: employee.role,
-      email: employee.email,
-      phone: employee.phone,
-      status: employee.status
-    });
 
-    employee.id = docRef.id;
+
+
+
+
+      // employee.toJson()); 
+    console.log("adding doc");
+
+    // employee.id = docRef.id;
+    // await updateDoc(docRef, employee.toJson());
+    console.log("updatedDoc");
 
     return employee;
   }
@@ -61,6 +77,7 @@ class EmployeeService {
 
   async updateEmployee(employee) {
     const docRef = doc(db, this.collection, employee.id);
+    // await updateDoc(docRef, employee.toJson());
 
     await updateDoc(docRef, {
       photo: employee.photo,
