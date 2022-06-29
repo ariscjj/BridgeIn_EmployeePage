@@ -31,13 +31,20 @@ export default function EmployeeInput(props){
   async function onInitialLoad(){
     const employees = await EmployeeService.fetchEmployees(); 
     setEmployees(employees);
+    console.log(employees);
   };
 
   async function selectEdited(empId){
     console.log(empId);
     console.log("EDITED EMP");
     setId(empId);
-    const edited = (employees.find((employee) => employee.id === id));
+    const test = (employees.find((employee) => employee.id === id));
+    console.log("test")
+    console.log(test);
+
+
+    console.log(editedEmp);
+    setEditedEmp(employees.find((employee) => employee.id === id));
     console.log(employees)
 //    setEditedEmp(employees.find((employee) => employee.id === id));
 
@@ -56,7 +63,7 @@ export default function EmployeeInput(props){
   async function onEmployeeFormSubmit(e) {
    // add the employee to the employees state 
    //create the employee 
-  e.preventDefault();
+    e.preventDefault();
     console.log("clicked submit");
     try {
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
@@ -81,6 +88,7 @@ export default function EmployeeInput(props){
      await EmployeeService.updateEmployee(editedEmp);
       console.log("done editing emp");
 
+
      setPhoto(null);
      setName('');
      setCountry('');
@@ -88,6 +96,7 @@ export default function EmployeeInput(props){
      setEmail('');
      setPhone('');
      setStatus('');
+     setEditedEmp(null);
 
 
    } catch (err) {

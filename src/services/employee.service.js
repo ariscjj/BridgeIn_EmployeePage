@@ -78,6 +78,8 @@ class EmployeeService {
   async updateEmployee(employee) {
     const docRef = doc(db, this.collection, employee.id);
     // await updateDoc(docRef, employee.toJson());
+    console.log("from the JS service:");
+    console.log(employee);
 
     await updateDoc(docRef, {
       photo: employee.photo,
