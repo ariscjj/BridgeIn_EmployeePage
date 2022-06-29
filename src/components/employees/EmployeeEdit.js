@@ -20,6 +20,7 @@ export default function EmployeeInput(props){
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
   const [employees, setEmployees] = useState([]);
+  const [editedEmp, setEditedEmp] = useState(null);
 
   useEffect(() => {
     if (!employees.length){
@@ -32,11 +33,31 @@ export default function EmployeeInput(props){
     setEmployees(employees);
   };
 
+  async function selectEdited(empId){
+    console.log(empId);
+    console.log("EDITED EMP");
+    setId(empId);
+    const edited = (employees.find((employee) => employee.id === id));
+    console.log(employees)
+//    setEditedEmp(employees.find((employee) => employee.id === id));
+
+    console.log(editedEmp);
+    setName(editedEmp.name);
+    setCountry(editedEmp.country);
+    setRole(editedEmp.role);
+    setEmail(editedEmp.email);
+    setPhone(editedEmp.phone);
+    setStatus(editedEmp.status);
+    console.log("set attribute values");
+    console.log(phone);
+  }
+
 
   async function onEmployeeFormSubmit(e) {
    // add the employee to the employees state 
    //create the employee 
   e.preventDefault();
+    console.log("clicked submit");
     try {
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
        console.log('Upload Progress: ', progress);
@@ -45,7 +66,6 @@ export default function EmployeeInput(props){
       console.log(id)
       console.log(name)
 
-     const editedEmp = employees.find((employee) => employee.id === id);
       console.log("EDITING");
       console.log(editedEmp);
       console.log(editedEmp.name)
@@ -74,6 +94,17 @@ export default function EmployeeInput(props){
      // TODO handle this
    }
  }
+  // function clicked(e) {
+  //   const ele = e.target; 
+  //   setName(e.target.value);
+  //   console.log("CLICKED");
+  //   console.log(e.target);
+  //   // ele.removeAttribute("onClick");
+  //   // ele.removeAttribute("readonly");
+  //   ele.value = "";
+  //   console.log(name);
+
+  // }
 
 
   function onFileSelected(e) {
@@ -94,7 +125,7 @@ export default function EmployeeInput(props){
               className="form-select" 
               aria-label="Default select example"
               searchable={true}
-              onChange={(e) => setId(e.target.value)}>
+              onChange={(e) => selectEdited(e.target.value)}>
             <option selected>Select employee to edit</option>
               {
                 employees.map((employee) => 
@@ -112,17 +143,18 @@ export default function EmployeeInput(props){
                 class="form-control" 
                 id="inputGroupFile02"
                 accept=".png, .jpg, .jpeg"
-                onChange={onFileSelected} />
+                onChange={onFileSelected}/>
             </div>
           </div>
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
             <input 
-              value={name}
+              value={ name }
               onChange={(e) => setName(e.target.value)}
-              type="text" 
+              type="text"
               className="form-control"
-              placeholder="Name" />
+              placeholder="Name"
+            />
           </div>
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Country</label>
