@@ -13,6 +13,14 @@ export default function EmployeeInput(props){
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
 
+  function stringContainsNumber(_string) {
+    return /\d/.test(_string);
+  }
+
+  function onlyNumbers(str) {
+    return /^[0-9]+$/.test(str);
+  }  
+
   function onEmployeeFormSubmit(e){
     e.preventDefault();
     props.onTaskCreate(photo, name, birthday, address, city, postalCode, country, role, email, phone, status);
@@ -27,6 +35,9 @@ export default function EmployeeInput(props){
     setEmail('');
     setPhone('');
     setStatus('');
+    <Alert key={success} variant={success}>
+      Successfully created employee!
+    </Alert>
   }
   return (
     <div>
@@ -47,7 +58,12 @@ export default function EmployeeInput(props){
           <label for="exampleFormControlInput1" class="form-label">Name</label>
           <input 
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              if(stringContainsNumber(e.target.value)){
+                <Alert key={danger} variant={danger}>
+                  Please input a valid name!
+                </Alert>
+              }else {setName(e.target.value)}}}
             type="text" 
             className="form-control"
             placeholder="Name" />
@@ -93,7 +109,6 @@ export default function EmployeeInput(props){
           <input 
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-
             type="text" 
             className="form-control"
             placeholder="Country" />
@@ -112,15 +127,20 @@ export default function EmployeeInput(props){
           <input 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="text" 
+            type="email" 
             className="form-control"
-            placeholder="Email" />
+            placeholder="name@address.com" />
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Phone</label>
           <input 
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              if(onlyNumbers(e.target.value)){
+                <Alert key={danger} variant={danger}>
+                  Please input a valid number!
+                </Alert>
+              }else {setPhone(e.target.value)}}}
             type="text" 
             className="form-control"
             placeholder="Phone" />
