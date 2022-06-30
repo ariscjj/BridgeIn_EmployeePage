@@ -73,6 +73,10 @@ class EmployeeService {
     await updateDoc(docRef, {
       photo: employee.photo,
       name: employee.name,
+      birthday: employee.birthday,
+      address: employee.address,
+      city: employee.city,
+      postalCode: employee.postalCode,
       country: employee.country,
       role: employee.role,
       email: employee.email,
