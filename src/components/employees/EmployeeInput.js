@@ -136,7 +136,7 @@ export default function EmployeeInput(props){
           <input 
             value={phone}
             onChange={(e) => {
-              if(onlyNumbers(e.target.value)){
+              if(!onlyNumbers(e.target.value)){
                 <Alert key={danger} variant={danger}>
                   Please input a valid number!
                 </Alert>
