@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Flag from "react-world-flags";
 
 import StatusBox from "../../common/StatusBox";
+import EditEmployeeService from '../../services/editEmployee.service.js'; 
 import EmployeeService from '../../services/employee.service.js'; 
 
 
-export default function EmployeeTable(){
+export default function EditTable(){
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -15,9 +16,20 @@ export default function EmployeeTable(){
   }, []); 
 
   async function onInitialLoad(){
-    const employees = await EmployeeService.fetchEmployees(); 
+    const employees = await EditEmployeeService.fetchEmployees(); 
     setEmployees(employees);
   }
+
+  async function approve(edit){
+    console.log("APPROVE");
+    console.log(edit);
+    console.log(edit.name);
+    console.log(edit.id);
+    await EmployeeService.updateEmployee(edit);
+    await EditEmployeeService.deleteEmployee(edit.id);
+    onInitialLoad();
+  }
+
 
   function colorStatus(status){
     const base = "badge text-bg-"
@@ -87,6 +99,13 @@ export default function EmployeeTable(){
                     colorStatus = {colorStatus}
                   >{employee.status}</StatusBox>
                 </td>
+                <td> 
+                  <button type="button" 
+                   class="btn-sm btn-primary"
+                   value={employee}
+                   onClick={(e) => approve(employee)}>Approve</button>
+                </td>
+
               </tr>
             )
           }

@@ -8,21 +8,18 @@ import {
 import { db } from '../firebase/firebase';
 import { Employee } from '../models/employee';
 
-class EmployeeService {
+class EditEmployeeService {
 
   constructor() {
-    this.collection = 'employees';
+    this.collection = 'editEmp';
   }
 
   async createEmployee(employee) {
     const collectionRef = collection(db, this.collection);
-    console.log("got colloection")
-    const d = new Date();
-    let time = d.getTime();
-    console.log(time);
+    console.log("got collection")
     await addDoc(collectionRef, 
       {
-        id: time,
+        id: employee.id,
         photo: employee.photo,
         name: employee.name,
         country: employee.country,
@@ -32,6 +29,7 @@ class EmployeeService {
         status: employee.status
       }
     );
+
 
       // employee.toJson()); 
     console.log("adding doc");
@@ -54,7 +52,7 @@ class EmployeeService {
       const data = doc.data();
 
       const employee = new Employee(
-        doc.id,
+        data.id,
         data.photo,
         data.name,
         data.country,
@@ -91,12 +89,12 @@ class EmployeeService {
 
   async deleteEmployee(employeeId) {
     const docRef = doc(db, this.collection, employeeId);
-
     await deleteDoc(docRef);
+    console.log("DELETING");
   }
 } 
 
-const service = new EmployeeService();
+const service = new EditEmployeeService();
 
 export default service;
 
