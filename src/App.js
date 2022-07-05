@@ -7,8 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import NavBar from './common/NavBar';
 import EmployeeInput from './components/employees/EmployeeInput'
 import EmployeeTable from './components/employees/EmployeeTable'
-import EmployeeEdit from './components/employees/EmployeeEdit'
-import EditEmployeeInput from './components/employees/EditEmployeeInput'
+import EditInput from './components/employees/EditInput'
 import EditTable from './components/employees/EditTable'
 
 
@@ -19,7 +18,7 @@ export default function App() {
       <Routes>
         <Route path='add-employee' element={<EmployeeInput />} />
         <Route path='employee-table' element={<EmployeeTable />} />
-        <Route path='employee-edit' element={<EditEmployeeInput/>} />
+        <Route path='employee-edit' element={<EditInput/>} />
         <Route path='edit-table' element={<EditTable/>} />
 
       </Routes>
