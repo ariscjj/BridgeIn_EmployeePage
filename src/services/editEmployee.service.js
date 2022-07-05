@@ -2,6 +2,7 @@ import {
   collection, addDoc,
   query, getDocs,
   doc, updateDoc,
+  setDoc, 
   deleteDoc
 } from 'firebase/firestore';
 
@@ -15,9 +16,11 @@ class EditEmployeeService {
   }
 
   async createEmployee(employee) {
-    const collectionRef = collection(db, this.collection);
+    const docRef = doc(db, this.collection, employee.id); 
+    // const collectionRef = collection(db, this.collection);
     console.log("got collection")
-    await addDoc(collectionRef, 
+    // const docRef = await setDoc(collectionRef, 
+    await setDoc(docRef, 
       {
         id: employee.id,
         photo: employee.photo,
@@ -34,7 +37,6 @@ class EditEmployeeService {
       // employee.toJson()); 
     console.log("adding doc");
 
-    // employee.id = docRef.id;
     // await updateDoc(docRef, employee.toJson());
     console.log("updatedDoc");
 
@@ -71,7 +73,7 @@ class EditEmployeeService {
   async updateEmployee(employee) {
     const docRef = doc(db, this.collection, employee.id);
     // await updateDoc(docRef, employee.toJson());
-    console.log("from the JS service:");
+    console.log("from the JS service editEmp:");
     console.log(employee);
 
     await updateDoc(docRef, {
@@ -84,11 +86,13 @@ class EditEmployeeService {
       status: employee.status
     });
 
+
     return employee;
   }
 
-  async deleteEmployee(employeeId) {
-    const docRef = doc(db, this.collection, employeeId);
+  async deleteEmployee(employee) {
+    const docRef = doc(db, this.collection, employee.id);
+    console.log("DELETING" + employee.id);
     await deleteDoc(docRef);
     console.log("DELETING");
   }
@@ -97,6 +101,4 @@ class EditEmployeeService {
 const service = new EditEmployeeService();
 
 export default service;
-
-
 

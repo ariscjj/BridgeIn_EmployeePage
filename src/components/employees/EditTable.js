@@ -26,7 +26,7 @@ export default function EditTable(){
     console.log(edit.name);
     console.log(edit.id);
     await EmployeeService.updateEmployee(edit);
-    await EditEmployeeService.deleteEmployee(edit.id);
+    await EditEmployeeService.deleteEmployee(edit);
     onInitialLoad();
   }
 

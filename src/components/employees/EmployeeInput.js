@@ -41,10 +41,12 @@ export default function EmployeeInput(props){
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
         console.log('Upload Progress: ', progress);
       });
+      const d = new Date();
+      let time = d.getTime() + "";
 
       const employee = await EmployeeService.createEmployee(
         new Employee(
-          null,
+          time,
           downloadUrl, 
           name,
           country,
