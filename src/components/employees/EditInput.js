@@ -10,7 +10,6 @@ import EditEmployeeService from '../../services/editEmployee.service.js';
 import EmployeeService from '../../services/employee.service.js'; 
 import FileService from '../../services/file.service';
 
-
 export default function EditEmployeeInput(props){
   const [id, setId] = useState("");
   const [photo, setPhoto] = useState(null);

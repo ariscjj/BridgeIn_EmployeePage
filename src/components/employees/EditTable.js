@@ -21,15 +21,10 @@ export default function EditTable(){
   }
 
   async function approve(edit){
-    console.log("APPROVE");
-    console.log(edit);
-    console.log(edit.name);
-    console.log(edit.id);
     await EmployeeService.updateEmployee(edit);
     await EditEmployeeService.deleteEmployee(edit);
     onInitialLoad();
   }
-
 
   function colorStatus(status){
     const base = "badge text-bg-"

@@ -33,8 +33,6 @@ export default function EmployeeInput(props){
 
 
   async function onEmployeeFormSubmit(e) {
-    // add the employee to the employees state 
-    //create the employee 
     e.preventDefault();
 
     try {
@@ -70,19 +68,6 @@ export default function EmployeeInput(props){
       // TODO handle this
     }
   }
-
-
-//   function onEmployeeFormSubmit(e){
-//     props.onEmployeeCreate(photo, name, country, role, email, phone, status);
-//     console.log("CREATING EMPLOYEE");
-//     setPhoto(null);
-//     setName('');
-//     setCountry('');
-//     setRole('');
-//     setEmail('');
-//     setPhone('');
-//     setStatus('');
-//   }
 
   function onFileSelected(e) {
     if (e.target.files.length){
