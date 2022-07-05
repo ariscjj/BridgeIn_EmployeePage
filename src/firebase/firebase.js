@@ -1,11 +1,7 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-<<<<<<< HEAD
 import { getAuth } from "firebase/auth"; 
-
-=======
->>>>>>> master
 import { getFirestore } from "firebase/firestore"; 
 import { getStorage } from "firebase/storage";
 
