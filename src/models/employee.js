@@ -3,19 +3,27 @@ export class Employee {
     id,
     photo, 
     name,
+    birthday,
+    address,
+    postalCode,
+    city,
     country,
     role,
     email,
     phone,
-    status
+    status  
   ){
     this.id = id;
     this.photo = photo; 
     this.name = name; 
+    this.birthday = birthday;
+    this.address = address;
+    this.city = city;
+    this.postalCode = postalCode;
     this.country = country; 
     this.role = role;
     this.email = email;
     this.phone = phone;
-    this.status = status
+    this.status = status;
   }
 }

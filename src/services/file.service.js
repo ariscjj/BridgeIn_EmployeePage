@@ -17,7 +17,6 @@ class FileService {
 
       uploadTask.on('state_changed',
         (snapshot) => {
-
           // called when an update happens (progress on upload)
           this.handleProgress(snapshot, onUploadProgress);
         },
@@ -54,7 +53,6 @@ class FileService {
   handleError(error) {
     return error.message;
   }
-
 
   async deleteFile(downloadUrl) {
     // get a reference to the file we want to remove
