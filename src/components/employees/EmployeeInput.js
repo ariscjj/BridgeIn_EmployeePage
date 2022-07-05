@@ -1,4 +1,6 @@
 import React, { useState } from 'react'; 
+import { Alert } from 'bootstrap';
+import DatePicker from 'react-date-picker';
 
 export default function EmployeeInput(props){
   const [photo, setPhoto] = useState("");
@@ -20,6 +22,16 @@ export default function EmployeeInput(props){
   function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
   }  
+
+  function birthdaySelector() {
+    const [value, onChange] = useState(new Date());
+  
+    return (
+      <div>
+        <DatePicker onChange={onChange} value={value} />
+      </div>
+    );
+  }
 
   function onEmployeeFormSubmit(e){
     e.preventDefault();
@@ -73,7 +85,7 @@ export default function EmployeeInput(props){
           <input 
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
-            type="text" 
+            type="birthday" 
             className="form-control"
             placeholder="Birthday" />
         </div>
@@ -99,7 +111,12 @@ export default function EmployeeInput(props){
           <label for="exampleFormControlInput1" class="form-label">Postal Code</label>
           <input 
             value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)}
+            onChange={(e) => {
+              if(!onlyNumbers(e.target.value)){
+                <Alert key={danger} variant={danger}>
+                  Please input a valid postal code!
+                </Alert>
+              }else {setPostalCode(e.target.value)}}}
             type="text" 
             className="form-control"
             placeholder="PostalCode" />
