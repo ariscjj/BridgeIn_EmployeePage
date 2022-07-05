@@ -2,10 +2,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-<<<<<<< HEAD
-=======
   deleteObject
->>>>>>> original
 } from 'firebase/storage';
 
 import { storage } from '../firebase/firebase';
@@ -14,36 +11,12 @@ class FileService {
 
   uploadImage(file, onUploadProgress) {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-
-      const fileRef = ref(storage, 'images/' + file.name);
-=======
       // get a reference to the firebase file location we want to store our file
       const fileRef = ref(storage, 'images/' + this.getUniqueFileName(file));
->>>>>>> original
       const uploadTask = uploadBytesResumable(fileRef, file);
 
       uploadTask.on('state_changed',
         (snapshot) => {
-<<<<<<< HEAD
-          // handle update
-          this.handleProgressUpdate(snapshot, onUploadProgress);
-        },
-        (error) => {
-          // handle error
-          reject(error.message);
-        },
-        () => {
-          // get downloadUrl for complete upload
-          // resolve our promise
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            // resolve the download url
-            resolve(downloadUrl);
-          });
-        },
-      );
-=======
-
           // called when an update happens (progress on upload)
           this.handleProgress(snapshot, onUploadProgress);
         },
@@ -59,21 +32,10 @@ class FileService {
             resolve(downloadUrl);
           });
         });
->>>>>>> original
 
     });
   }
 
-<<<<<<< HEAD
-  handleProgressUpdate(snapshot, onUploadProgress) {
-    if (onUploadProgress) {
-      const progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-      onUploadProgress(progress);
-    }
-  }
-}
-
-=======
   getUniqueFileName(file) {
     const dotIndex = file.name.lastIndexOf('.');
     const fileName = file.name.substring(0, dotIndex);
@@ -92,7 +54,6 @@ class FileService {
     return error.message;
   }
 
-
   async deleteFile(downloadUrl) {
     // get a reference to the file we want to remove
     const fileRef = ref(storage, downloadUrl);
@@ -101,7 +62,6 @@ class FileService {
   }
 
 }
->>>>>>> original
 
 const service = new FileService();
 export default service;

@@ -16,21 +16,21 @@ class EmployeeService {
 
   async createEmployee(employee) {
     const collectionRef = collection(db, this.collection);
-    const docRef = await addDoc(collectionRef, 
-      {
-        id: employee.id,
-        photo: employee.photo,
-        name: employee.name,
-        country: employee.country,
-        role: employee.role,
-        email: employee.email,
-        phone: employee.phone,
-        status: employee.status
-      }
-    );
+    // const docRef = await addDoc(collectionRef, 
+    //   {
+    //     id: employee.id,
+    //     photo: employee.photo,
+    //     name: employee.name,
+    //     country: employee.country,
+    //     role: employee.role,
+    //     email: employee.email,
+    //     phone: employee.phone,
+    //     status: employee.status
+    //   }
+    // );
 
-<<<<<<< HEAD
-    const docRef = await addDoc(collectionRef, {
+    await addDoc(collectionRef, {
+      id: employee.id,
       photo: employee.photo,
       name: employee.name,
       birthday: employee.birthday,
@@ -43,15 +43,7 @@ class EmployeeService {
       phone: employee.phone,
       status: employee.status
     });
-=======
-      // employee.toJson()); 
     console.log("adding doc");
->>>>>>> original
-
-    employee.id = docRef.id;
-    // await updateDoc(docRef, employee.toJson());
-    console.log("updatedDoc");
-
     return employee;
   }
 
