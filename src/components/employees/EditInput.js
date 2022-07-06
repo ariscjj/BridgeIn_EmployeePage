@@ -14,6 +14,10 @@ export default function EditEmployeeInput(props){
   const [id, setId] = useState("");
   const [photo, setPhoto] = useState(null);
   const [name, setName] = useState(""); 
+  const [birthday, setBirthday] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
@@ -47,6 +51,10 @@ export default function EditEmployeeInput(props){
           id,
           downloadUrl, 
           name,
+          birthday,
+          address,
+          city,
+          postalCode,
           country,
           role,
           email,
@@ -58,6 +66,10 @@ export default function EditEmployeeInput(props){
       setEmployees([...employees, employee]);
       setPhoto(null);
       setName('');
+      setBirthday('');
+      setAddress('');
+      setCity('');
+      setPostalCode('');
       setCountry('');
       setRole('');
       setEmail('');
@@ -77,6 +89,10 @@ export default function EditEmployeeInput(props){
   
     setId(emp.id);
     setName(emp.name);
+    setBirthday(emp.birthday);
+    setAddress(emp.address);
+    setCity(emp.city);
+    setPostalCode(emp.postalCode);
     setCountry(emp.country);
     setRole(emp.role);
     setEmail(emp.email);
