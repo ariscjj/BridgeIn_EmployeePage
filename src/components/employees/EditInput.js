@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'; 
-import ReactFlagsSelect from "react-flags-select";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'

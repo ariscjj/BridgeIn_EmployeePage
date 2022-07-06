@@ -1,11 +1,26 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function ImageSelector({
   title,
-  onFileChange
+  onFileChange, 
+  downloadUrl
 }) {
   const inputRef = useRef(null);
-  const [fileContent, setFileContent] = useState('');
+  const [fileContent, setFileContent] = useState("");
+
+  useEffect(() => {
+    if (!fileContent){
+      onInitialLoad(); 
+    }
+  }, []); 
+
+  async function onInitialLoad(){
+    console.log(downloadUrl);
+    setFileContent(downloadUrl);
+    console.log("FILECONTENT");
+    console.log(fileContent);
+  }
+
 
   function onFileSelected(e) {
     let file = null;
@@ -47,7 +62,7 @@ export default function ImageSelector({
               borderRadius: '50%',
               'objectFit': 'cover',
             }}
-              src={fileContent} alt='selected file' />
+              src={fileContent} alt='selected photo' />
           </div>
           :
           <></>

@@ -19,7 +19,7 @@ export default function FormInput(props){
   const [id, setId] = useState("");
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState(""); 
-  const [birthday, setBirthday] = useState("");
+  const [birthday, setBirthday] = useState(new Date());
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
@@ -29,8 +29,6 @@ export default function FormInput(props){
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
   const [employees, setEmployees] = useState([]);
-
-
 
   const [success, setSuccess] = useState(false);
 
@@ -50,8 +48,11 @@ export default function FormInput(props){
       let emp = employees.find((employee) => employee.id === empId)
       setId(empId);
       setPhoto(emp.photo);
+      console.log("EMP PHOTO");
+      console.log(emp.photo);
+      console.log(photo);
       setName(emp.name);
-      setBirthday(emp.birthday);
+      // setBirthday(emp.birthday);
       setAddress(emp.address);
       setCity(emp.city);
       setPostalCode(emp.postalCode);
@@ -119,10 +120,19 @@ export default function FormInput(props){
   return (
     <div>
         <form onSubmit={onEmployeeFormSubmit}>
-          <ImageSelector 
-            onFileChange={(photo) => setPhoto(photo)}
-            title="Profile Image"
-          />
+          {
+            photo ? 
+              <div className='text-center mb-3'>
+              <ImageSelector 
+                onFileChange={(photo) => setPhoto(photo)}
+                title="Profile Image"
+                downloadUrl={photo}
+              />
+              </div>
+              :
+              <></>
+
+          }
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -141,7 +151,7 @@ export default function FormInput(props){
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Birthday</label>
-            <DatePicker selected={birthday} onChange={(bday) => setBirthday(bday)} />
+            <DatePicker value={birthday} onChange={setBirthday} />
           </div>
 
           <div className="mb-3">
