@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { EmpProfile } from "./EmpProfile";
-import { EmpProfileService } from "./empProfile.service.js"
+import { EmpProfileService } from "./empProfile.service"
 
 
 export default function RegisterPage() {
@@ -12,11 +12,11 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  async function onProfileCreate(id, name, surname, role, approved) {
+  async function onProfileCreate(id, name) {
     await EmpProfileService.saveProfile(
-      new EmpProfile(id, name, surname, role, approved)
+      new EmpProfile(id, name)
     );
-  }
+}
 
   async function onFormSubmit(e) {
     e.preventDefault();

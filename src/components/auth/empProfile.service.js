@@ -1,6 +1,6 @@
 import { getDoc, setDoc, doc } from "firebase/firestore";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import { EmpProfile } from "./EmpProfile";
 
 class EmpProfileService {
@@ -10,7 +10,6 @@ class EmpProfileService {
 
   async saveProfile(profile) {
     const docRef = doc(db, this.collection, profile.id);
-
     await setDoc(docRef, profile.toJson());
   }
 
