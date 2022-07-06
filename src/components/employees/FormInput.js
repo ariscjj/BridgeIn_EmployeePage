@@ -23,6 +23,9 @@ export default function FormInput(props){
   const [status, setStatus] = useState("");
   const [employees, setEmployees] = useState([]);
 
+
+  const [success, setSuccess] = useState(false);
+
   useEffect(() => {
     if (!employees.length){
       onInitialLoad(); 
@@ -119,6 +122,8 @@ export default function FormInput(props){
     setEmail('');
     setPhone('');
     setStatus('');
+    setSuccess(true);
+      
     } catch (err) {
       // TODO handle this
     }
@@ -134,6 +139,7 @@ export default function FormInput(props){
 
 
   return (
+    <div>
         <form onSubmit={onEmployeeFormSubmit}>
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Photo</label>
@@ -273,6 +279,15 @@ export default function FormInput(props){
             Submit
           </button> 
         </form>
+      {
+        success ? (
+        <div className="alert alert-success mt-3" role="alert">
+          Succesfully submitted form
+        </div> ) : 
+        <></>
+      }
+    </div>
+
   )
 
 }

@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import { Alert } from 'bootstrap';
 
 
@@ -11,6 +11,7 @@ import EmployeeService from '../../services/employee.service.js';
 import FormInput from './FormInput';
 
 export default function EmployeeInput(){
+  // const [success, setSuccess] = useState(false); 
 
   async function onEmployeeFormSubmit(id, downloadUrl, name, birthday, address, postalCode, city, country, role, email, phone, status) {
       const d = new Date();
