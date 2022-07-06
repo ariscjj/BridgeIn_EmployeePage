@@ -10,6 +10,8 @@ import EditEmployeeService from '../../services/editEmployee.service.js';
 import EmployeeService from '../../services/employee.service.js'; 
 import FileService from '../../services/file.service';
 
+import FormInput from './FormInput';
+
 export default function EditEmployeeInput(props){
   const [id, setId] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -123,6 +125,11 @@ export default function EditEmployeeInput(props){
           </div>
 
           { selected ? (
+            <FormInput empId=empId />
+
+
+
+
           <div>
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Photo</label>
