@@ -2,8 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ReactFlagsSelect from "react-flags-select";
 import { Alert } from 'bootstrap';
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+
 import FileService from '../../services/file.service';
 import EmployeeService from '../../services/employee.service';
+import ImageSelector from './ImageSelector';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -22,6 +29,10 @@ export default function FormInput(props){
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
   const [employees, setEmployees] = useState([]);
+
+
+
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!employees.length){
@@ -51,42 +62,13 @@ export default function FormInput(props){
       setStatus(emp.status);
      }
 
-    onSelectChange();
   
     console.log("EMPLOYEE ID");
     console.log(id);
     console.log("set attribute values");
     console.log(phone);
-    }
-
-  function onSelectChange(){
-    if(props.empId !== "") {
-      let empId = props.empId
-      console.log("EDITING ID");
-      console.log(id);
-      let emp = employees.find((employee) => employee.id === empId)
-      setPhoto(emp.photo);
-      setName(emp.name);
-      setBirthday(emp.birthday);
-      setAddress(emp.address);
-      setCity(emp.city);
-      setPostalCode(emp.postalCode);
-      setCountry(emp.country);
-      setRole(emp.role);
-      setEmail(emp.email);
-      setPhone(emp.phone);
-      setStatus(emp.status);
-    }
   }
 
-  function onFileSelected(e) {
-    if (e.target.files.length){
-      setPhoto(e.target.files[0]);
-    } else {
-      setPhoto(null);
-    }
-  }
- 
   async function onEmployeeFormSubmit(e) {
     e.preventDefault(); 
     try {
@@ -107,6 +89,7 @@ export default function FormInput(props){
       email, 
       phone, 
       status)
+    setSuccess(true);
 
     setPhoto('');
     setName('');
@@ -134,18 +117,12 @@ export default function FormInput(props){
 
 
   return (
+    <div>
         <form onSubmit={onEmployeeFormSubmit}>
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Photo</label>
-            <div className="input-group mb-3">
-              <input 
-                type="file" 
-                class="form-control" 
-                id="inputGroupFile02"
-                accept=".png, .jpg, .jpeg"
-                onChange={onFileSelected} />
-            </div>
-          </div>
+          <ImageSelector 
+            onFileChange={(photo) => setPhoto(photo)}
+            title="Profile Image"
+          />
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -164,12 +141,7 @@ export default function FormInput(props){
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Birthday</label>
-            <input 
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
-              type="birthday" 
-              className="form-control"
-              placeholder="Birthday" />
+            <DatePicker selected={birthday} onChange={(bday) => setBirthday(bday)} />
           </div>
 
           <div className="mb-3">
@@ -200,8 +172,7 @@ export default function FormInput(props){
                 if(!onlyNumbers(e.target.value)){
                   <Alert key="danger" variant="danger">
                     Please input a valid postal code!
-                  </Alert>
-                } else {setPostalCode(e.target.value)}}}
+                  </Alert> } else {setPostalCode(e.target.value)}}}
               type="text" 
               className="form-control"
               placeholder="PostalCode" />
@@ -239,17 +210,10 @@ export default function FormInput(props){
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Phone</label>
-            <input 
+            <PhoneInput
+              placeholder="Enter phone number"
               value={phone}
-              onChange={(e) => {
-                if(!onlyNumbers(e.target.value)){
-                  <Alert key="danger" variant="danger">
-                    Please input a valid number!
-                  </Alert>
-                }else {setPhone(e.target.value)}}}
-              type="text" 
-              className="form-control"
-              placeholder="Phone" />
+              onChange={setPhone}/>
           </div>
 
           <div className="mb-3">
@@ -273,6 +237,16 @@ export default function FormInput(props){
             Submit
           </button> 
         </form>
+      {
+        success ? 
+            <div class="alert alert-success mt-3" role="alert">
+              Form successfully submitted!
+            </div> 
+            : 
+            <></>
+      }
+    </div>
+
   )
 
 }

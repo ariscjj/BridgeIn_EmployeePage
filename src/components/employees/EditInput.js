@@ -8,7 +8,6 @@ import { Employee } from '../../models/employee.js';
 
 import EditEmployeeService from '../../services/editEmployee.service.js'; 
 import EmployeeService from '../../services/employee.service.js'; 
-import FileService from '../../services/file.service';
 
 import FormInput from './FormInput';
 
@@ -54,7 +53,6 @@ export default function EditEmployeeInput(props){
 
 
   return (
-
     <div className="container my-5">
       <div className="card card-body text-center">
         <h5 class="card-title">Edit an Employee</h5>
@@ -76,9 +74,9 @@ export default function EditEmployeeInput(props){
           </div>
 
           { selected ? (
-            <FormInput empId={ id } onEmployeeFormSubmit={onEmployeeFormSubmit}/>
+            <FormInput empId={id} onEmployeeFormSubmit={onEmployeeFormSubmit}/>
           ) : 
-          <></>}
+          <></> }
 
     </div>
   </div>
