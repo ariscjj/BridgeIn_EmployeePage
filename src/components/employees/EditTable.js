@@ -21,7 +21,9 @@ export default function EditTable(){
   }
 
   async function approve(edit){
+    console.log("APPROVING");
     await EmployeeService.updateEmployee(edit);
+    console.log("DELETING");
     await EditEmployeeService.deleteEmployee(edit);
     onInitialLoad();
   }
