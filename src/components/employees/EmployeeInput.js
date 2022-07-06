@@ -100,6 +100,12 @@ export default function EmployeeInput(props){
     return /^[0-9]+$/.test(str);
   }  
 
+  function validateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)){
+    return (true)
+    } return (false)
+  }
+
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
@@ -202,7 +208,8 @@ export default function EmployeeInput(props){
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input 
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {if(validateEmail(e.target.value)){
+                setEmail(e.target.value)}else{alert("You have entered an invalid email address!")}}}
               type="email" 
               className="form-control"
               placeholder="name@address.com" />
