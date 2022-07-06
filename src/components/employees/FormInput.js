@@ -134,7 +134,6 @@ export default function FormInput(props){
               <ImageSelector 
                 onFileChange={(photo) => setPhoto(photo)}
                 title="Profile Image"
-                downloadUrl={photo}
               />
               </div>
           }

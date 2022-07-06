@@ -5,6 +5,8 @@ export default function ImageSelector({
   onFileChange, 
   downloadUrl
 }) {
+  console.log("DownloadURL");
+  console.log(downloadUrl);
   const inputRef = useRef(null);
   const [fileContent, setFileContent] = useState("");
 
@@ -14,7 +16,7 @@ export default function ImageSelector({
     }
   }, []); 
 
-  async function onInitialLoad(){
+  function onInitialLoad(){
     console.log(downloadUrl);
     setFileContent(downloadUrl);
     console.log("FILECONTENT");
@@ -62,10 +64,11 @@ export default function ImageSelector({
               borderRadius: '50%',
               'objectFit': 'cover',
             }}
-              src={fileContent} alt='selected photo' />
+              src={fileContent} alt='selected pfp' />
           </div>
           :
           <></>
+
       }
 
       <div className='text-center'>
