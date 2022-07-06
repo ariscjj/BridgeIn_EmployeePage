@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactFlagsSelect from "react-flags-select";
 import { Alert } from 'bootstrap';
 
-
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
@@ -39,6 +38,9 @@ export default function EmployeeInput(props){
   async function onEmployeeFormSubmit(e) {
     e.preventDefault();
     try {
+      <Alert key="success" variant="success">
+        Successfully created employee!
+      </Alert>
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
         console.log('Upload Progress: ', progress);
       });
@@ -60,10 +62,6 @@ export default function EmployeeInput(props){
           phone,
           status 
         ));
-
-     <Alert key="success" variant="success">
-      Successfully created employee!
-    </Alert>
 
       console.log("CREATED EMPLOYEE");
       setEmployees([...employees, employee]);
@@ -100,8 +98,8 @@ export default function EmployeeInput(props){
     return /^[0-9]+$/.test(str);
   }  
 
-  function validateEmail(mail) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)){
+  function validateEmail(email) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)){
     return (true)
     } return (false)
   }
@@ -208,9 +206,8 @@ export default function EmployeeInput(props){
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input 
               value={email}
-              onChange={(e) => {if(validateEmail(e.target.value)){
-                setEmail(e.target.value)}else{alert("You have entered an invalid email address!")}}}
-              type="email" 
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
               className="form-control"
               placeholder="name@address.com" />
           </div>
