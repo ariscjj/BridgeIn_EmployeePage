@@ -26,6 +26,12 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link active" to="/edit-table">Pending Approval</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/ind-input">IndividualView</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/ind-edit">IndEdit</Link>
+            </li>
 
 
           </ul>

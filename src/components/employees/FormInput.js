@@ -130,8 +130,13 @@ export default function FormInput(props){
               />
               </div>
               :
-              <></>
-
+              <div className='text-center mb-3'>
+              <ImageSelector 
+                onFileChange={(photo) => setPhoto(photo)}
+                title="Profile Image"
+                downloadUrl={photo}
+              />
+              </div>
           }
 
           <div className="mb-3">

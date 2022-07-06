@@ -9,6 +9,8 @@ import EmployeeInput from './components/employees/EmployeeInput'
 import EmployeeTable from './components/employees/EmployeeTable'
 import EditEmployeeInput from './components/employees/EditInput'
 import EditTable from './components/employees/EditTable'
+import IndInput from './components/employees/empView/IndInput'
+import IndEdit from './components/employees/empView/IndEdit'
 
 
 export default function App() {
@@ -20,6 +22,8 @@ export default function App() {
         <Route path='employee-table' element={<EmployeeTable />} />
         <Route path='employee-edit' element={<EditEmployeeInput/>} />
         <Route path='edit-table' element={<EditTable/>} />
+        <Route path='ind-input' element={<IndInput />} />
+        <Route path='ind-edit' element={<IndEdit />} />
 
       </Routes>
     </BrowserRouter>

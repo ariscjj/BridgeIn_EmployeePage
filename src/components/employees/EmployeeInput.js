@@ -39,7 +39,7 @@ export default function EmployeeInput(){
 
   return (
     <div className="container my-5">
-      <div className="card card-body text-left">
+      <div className="card card-body text-center">
         <h5 class="card-title text-center">Add an Employee</h5>
         <FormInput onEmployeeFormSubmit={onEmployeeFormSubmit}/>
       </div>
