@@ -16,15 +16,38 @@ class EditEmployeeService {
   }
 
   async createEmployee(employee) {
+    // const collectionRef = collection(db, this.collection);
+
     const docRef = doc(db, this.collection, employee.id); 
     // const collectionRef = collection(db, this.collection);
     console.log("got collection")
     // const docRef = await setDoc(collectionRef, 
+    //
+    //
+    // await addDoc(collectionRef, {
+    //   id: employee.id,
+    //   photo: employee.photo,
+    //   name: employee.name,
+    //   birthday: employee.birthday,
+    //   address: employee.address,
+    //   city: employee.city,
+    //   postalCode: employee.postalCode,
+    //   country: employee.country,
+    //   role: employee.role,
+    //   email: employee.email,
+    //   phone: employee.phone,
+    //   status: employee.status
+    // });
+
     await setDoc(docRef, 
       {
         id: employee.id,
         photo: employee.photo,
         name: employee.name,
+        birthday: employee.birthday,
+        address: employee.address,
+        postalCode: employee.postalCode,
+        city: employee.city,
         country: employee.country,
         role: employee.role,
         email: employee.email,
@@ -57,6 +80,10 @@ class EditEmployeeService {
         data.id,
         data.photo,
         data.name,
+        data.birthday,
+        data.address,
+        data.postalCode,
+        data.city,
         data.country,
         data.role,
         data.email,
@@ -79,13 +106,16 @@ class EditEmployeeService {
     await updateDoc(docRef, {
       photo: employee.photo,
       name: employee.name,
+      birthday: employee.birthday,
+      address: employee.address,
+      postalCode: employee.postalCode,
+      city: employee.city,
       country: employee.country,
       role: employee.role,
       email: employee.email,
       phone: employee.phone,
       status: employee.status
     });
-
 
     return employee;
   }

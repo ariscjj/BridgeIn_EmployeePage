@@ -1,13 +1,15 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import ReactFlagsSelect from "react-flags-select";
 import { Alert } from 'bootstrap';
 
 import FileService from '../../services/file.service';
+import EmployeeService from '../../services/employee.service';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 export default function FormInput(props){
+  const [id, setId] = useState("");
   const [photo, setPhoto] = useState("");
   const [name, setName] = useState(""); 
   const [birthday, setBirthday] = useState("");
@@ -19,6 +21,63 @@ export default function FormInput(props){
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    if (!employees.length){
+      onInitialLoad(); 
+    }
+  }, []); 
+
+  async function onInitialLoad(){
+    const employees = await EmployeeService.fetchEmployees(); 
+    setEmployees(employees);
+     if(props.empId !== "") {
+      let empId = props.empId
+      console.log("EDITING ID");
+      console.log(id);
+      let emp = employees.find((employee) => employee.id === empId)
+      setId(empId);
+      setPhoto(emp.photo);
+      setName(emp.name);
+      setBirthday(emp.birthday);
+      setAddress(emp.address);
+      setCity(emp.city);
+      setPostalCode(emp.postalCode);
+      setCountry(emp.country);
+      setRole(emp.role);
+      setEmail(emp.email);
+      setPhone(emp.phone);
+      setStatus(emp.status);
+     }
+
+    onSelectChange();
+  
+    console.log("EMPLOYEE ID");
+    console.log(id);
+    console.log("set attribute values");
+    console.log(phone);
+    }
+
+  function onSelectChange(){
+    if(props.empId !== "") {
+      let empId = props.empId
+      console.log("EDITING ID");
+      console.log(id);
+      let emp = employees.find((employee) => employee.id === empId)
+      setPhoto(emp.photo);
+      setName(emp.name);
+      setBirthday(emp.birthday);
+      setAddress(emp.address);
+      setCity(emp.city);
+      setPostalCode(emp.postalCode);
+      setCountry(emp.country);
+      setRole(emp.role);
+      setEmail(emp.email);
+      setPhone(emp.phone);
+      setStatus(emp.status);
+    }
+  }
 
   function onFileSelected(e) {
     if (e.target.files.length){
@@ -27,14 +86,16 @@ export default function FormInput(props){
       setPhoto(null);
     }
   }
-
+ 
   async function onEmployeeFormSubmit(e) {
     e.preventDefault(); 
     try {
       const downloadUrl = await FileService.uploadImage(photo, (progress) => {
         console.log('Upload Progress: ', progress);
       });
+
     props.onEmployeeFormSubmit(
+      id,
       downloadUrl, 
       name, 
       birthday, 
@@ -46,6 +107,7 @@ export default function FormInput(props){
       email, 
       phone, 
       status)
+
     setPhoto('');
     setName('');
     setBirthday('');
@@ -139,7 +201,7 @@ export default function FormInput(props){
                   <Alert key="danger" variant="danger">
                     Please input a valid postal code!
                   </Alert>
-                }else {setPostalCode(e.target.value)}}}
+                } else {setPostalCode(e.target.value)}}}
               type="text" 
               className="form-control"
               placeholder="PostalCode" />
