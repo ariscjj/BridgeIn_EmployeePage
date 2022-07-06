@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactFlagsSelect from "react-flags-select";
 import { Alert } from 'bootstrap';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-date-picker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
