@@ -19,8 +19,8 @@ export default function FormInput(props){
   const [name, setName] = useState(""); 
   const [birthday, setBirthday] = useState(new Date());
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
@@ -106,17 +106,17 @@ export default function FormInput(props){
       )
     setSuccess(true);
 
-    setPhoto('');
-    setName('');
-    setBirthday('');
-    setAddress('');
-    setPostalCode('');
-    setCity('');
-    setCountry('');
-    setRole('');
-    setEmail('');
-    setPhone('');
-    setStatus('');
+    // setPhoto('');
+    // setName('');
+    // setBirthday('');
+    // setAddress('');
+    // setPostalCode('');
+    // setCity('');
+    // setCountry('');
+    // setRole('');
+    // setEmail('');
+    // setPhone('');
+    // setStatus('');
     // setIDDocUpNum('');
     // setFiscIdentNum('');
     // setSocSecNum('');

@@ -47,6 +47,7 @@ export default function EditEmployeeInput(props){
 
   function onEditSelected(editId) {
     setId(editId);
+    console.log("SELECTED: " + editId);
     setSelected(true); 
   }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import { Alert } from 'bootstrap';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -18,6 +18,27 @@ export default function IndInput(){
   const [id, setId] = useState("");
   const d = new Date();
   let time = d.getTime() + "";
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    if (!employees.length){
+      onInitialLoad(); 
+    }
+  }, []); 
+
+  async function onInitialLoad(){
+    const employees = await EditEmployeeService.fetchEmployees(); 
+    setEmployees(employees);
+  }
+
+//   useEffect(() => {
+//     if (!id){
+//       setId(time);
+//       console.log("setTime");
+//       console.log(id);
+//     }
+//   }, []); 
+
 
   // const navigate = useNavigate();
   async function onEmpCreate(id, downloadUrl, name, birthday, address, postalCode, city, country, role, email, phone, status) {
@@ -65,15 +86,13 @@ export default function IndInput(){
         ));
   }
 
-
-
   return (
     <div className="container my-5">
       <div className="card card-body text-left">
         {
           first ? 
             <div>
-              <h5 class="card-title text-center">Add an Employee</h5>
+              <h5 class="card-title text-center">Enter Your Information</h5>
               <FormInput onEmployeeFormSubmit={onEmpCreate}/>
             </div>
           :

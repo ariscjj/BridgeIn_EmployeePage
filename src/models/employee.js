@@ -18,8 +18,8 @@ export class Employee {
     this.name = name; 
     this.birthday = birthday;
     this.address = address;
-    this.city = city;
     this.postalCode = postalCode;
+    this.city = city;
     this.country = country; 
     this.role = role;
     this.email = email;

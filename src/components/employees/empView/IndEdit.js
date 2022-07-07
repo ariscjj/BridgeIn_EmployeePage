@@ -16,6 +16,7 @@ import FormInput from './../FormInput';
 export default function IndInput(){
   const [success, setSuccess] = useState(true);
   const [id, setId] = useState("");
+  const [first, setFirst] = useState("");
 
   async function onEmpEdit(id, downloadUrl, name, birthday, address, postalCode, city, country, role, email, phone, status) {
       await EditEmployeeService.createEmployee(
@@ -34,15 +35,19 @@ export default function IndInput(){
           status 
         ));
     setId(id);
+    console.log("EDIT PAGE ID");
+    console.log(id);
   }
 
   return (
     <div className="container my-5">
       <div className="card card-body text-left">
+        {
             <div>
-              <h5 class="card-title text-center">Add an Employee</h5>
+              <h5 class="card-title text-center">Fill in Your personal Information</h5>
               <FormInput empId={ id } onEmployeeFormSubmit={onEmpEdit}/>
             </div>
+        }
       </div>
     </div>
   )
