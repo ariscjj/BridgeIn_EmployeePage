@@ -29,10 +29,10 @@ export default function FormInput(props){
   const [status, setStatus] = useState("");
   const [numbers, setNumbers] = useState(true);
   const [letters, setLetters] = useState(true);
-  const [idDocUpNum, setIDDocUpNum] = useState("");
-  const [fiscalIdentNum, setFiscIdentNum] = useState("");
-  const [socSecNum, setSocSecNum] = useState("");
-  const [bankIBAN, setBankIBAN] = useState("");
+  // const [idDocUpNum, setIDDocUpNum] = useState("");
+  // const [fiscalIdentNum, setFiscIdentNum] = useState("");
+  // const [socSecNum, setSocSecNum] = useState("");
+  // const [bankIBAN, setBankIBAN] = useState("");
   const [employees, setEmployees] = useState([]);
   const [success, setSuccess] = useState(false);
 
@@ -62,10 +62,10 @@ export default function FormInput(props){
       setEmail(emp.email);
       setPhone(emp.phone);
       setStatus(emp.status);
-      setIDDocUpNum(emp.idDocUpNum);
-      setFiscIdentNum(emp.fiscalIdentNum);
-      setSocSecNum(emp.socSecNum);
-      setBankIBAN(emp.bankIBAN);
+      // setIDDocUpNum(emp.idDocUpNum);
+      // setFiscIdentNum(emp.fiscalIdentNum);
+      // setSocSecNum(emp.socSecNum);
+      // setBankIBAN(emp.bankIBAN);
      }
 
   
@@ -95,10 +95,10 @@ export default function FormInput(props){
       email, 
       phone, 
       status,
-      idDocUpNum,
-      fiscalIdentNum,
-      socSecNum,
-      bankIBAN
+      // idDocUpNum,
+      // fiscalIdentNum,
+      // socSecNum,
+      // bankIBAN
       )
     setSuccess(true);
 
@@ -113,10 +113,10 @@ export default function FormInput(props){
     setEmail('');
     setPhone('');
     setStatus('');
-    setIDDocUpNum('');
-    setFiscIdentNum('');
-    setSocSecNum('');
-    setBankIBAN('');
+    // setIDDocUpNum('');
+    // setFiscIdentNum('');
+    // setSocSecNum('');
+    // setBankIBAN('');
     } catch (err) {
       // TODO handle this
     }
@@ -130,7 +130,6 @@ export default function FormInput(props){
   function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
   }  
-
 
   return (
     <div>
@@ -266,7 +265,7 @@ export default function FormInput(props){
               </select>
           </div>
 
-                      
+{/*                       
           <div className='mb-3'>
             <label for="exampleFormControlInput1" class="form-label">ID Document Upload Number</label>
             <input
@@ -344,9 +343,8 @@ export default function FormInput(props){
               type="text" 
               className="form-control"
               placeholder="PT50 0000 0000 0000 0000 0000 0" />
-          </div> 
+          </div>  */}
           
-
           <button className="btn btn-outline-secondary" type="submit">
             Submit
           </button> 
