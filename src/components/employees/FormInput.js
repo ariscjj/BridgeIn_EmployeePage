@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
 import ReactFlagsSelect from "react-flags-select";
-import { Alert } from 'bootstrap';
 
 import DatePicker from "react-date-picker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -28,6 +27,12 @@ export default function FormInput(props){
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
+  const [numbers, setNumbers] = useState(true);
+  const [letters, setLetters] = useState(true);
+  const [idDocUpNum, setIDDocUpNum] = useState("");
+  const [fiscalIdentNum, setFiscIdentNum] = useState("");
+  const [socSecNum, setSocSecNum] = useState("");
+  const [bankIBAN, setBankIBAN] = useState("");
   const [employees, setEmployees] = useState([]);
 
   const [success, setSuccess] = useState(false);
@@ -61,6 +66,10 @@ export default function FormInput(props){
       setEmail(emp.email);
       setPhone(emp.phone);
       setStatus(emp.status);
+      setIDDocUpNum(emp.idDocUpNum);
+      setFiscIdentNum(emp.fiscalIdentNum);
+      setSocSecNum(emp.socSecNum);
+      setBankIBAN(emp.bankIBAN);
      }
 
   
@@ -89,7 +98,12 @@ export default function FormInput(props){
       role, 
       email, 
       phone, 
-      status)
+      status,
+      idDocUpNum,
+      fiscalIdentNum,
+      socSecNum,
+      bankIBAN
+      )
     setSuccess(true);
 
     setPhoto('');
@@ -103,12 +117,17 @@ export default function FormInput(props){
     setEmail('');
     setPhone('');
     setStatus('');
+    setIDDocUpNum('');
+    setFiscIdentNum('');
+    setSocSecNum('');
+    setBankIBAN('');
     } catch (err) {
       // TODO handle this
     }
   }
 
   function stringContainsNumber(_string) {
+    //setNumbers(true);
     return /\d/.test(_string);
   }
 
@@ -144,13 +163,21 @@ export default function FormInput(props){
               value={name}
               onChange={(e) => {
                 if(stringContainsNumber(e.target.value)){
-                  <Alert key="danger" variant="danger">
-                    Please input a valid name!
-                  </Alert>
-                }else {setName(e.target.value)}}}
+                  setLetters(false)
+                  } else {
+                    setName(e.target.value);
+                    setLetters(true)}}}
               type="text" 
               className="form-control"
               placeholder="Name" />
+              {
+                letters ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Letter Inputs only!
+                </div>  
+              }
           </div>
 
           <div className="mb-3">
@@ -184,12 +211,21 @@ export default function FormInput(props){
               value={postalCode}
               onChange={(e) => {
                 if(!onlyNumbers(e.target.value)){
-                  <Alert key="danger" variant="danger">
-                    Please input a valid postal code!
-                  </Alert> } else {setPostalCode(e.target.value)}}}
+                  setNumbers(false)
+                  } else {
+                    setPostalCode(e.target.value);
+                    setNumbers(true)}}}
               type="text" 
               className="form-control"
               placeholder="PostalCode" />
+              {
+                numbers ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Number Inputs only!
+                </div>  
+              }
           </div>
 
           <div className="mb-3">
@@ -246,6 +282,87 @@ export default function FormInput(props){
                 <option value="Terminating">Terminated</option>
               </select>
           </div>
+
+                      
+          <div className='mb-3'>
+            <label for="exampleFormControlInput1" class="form-label">ID Document Upload Number</label>
+            <input
+              value={idDocUpNum}
+              onChange={(e) => {
+                if(!onlyNumbers(e.target.value)){
+                  setNumbers(false)
+                  } else {
+                    setIDDocUpNum(e.target.value);
+                    setNumbers(true)}}}
+              type="text" 
+              className="form-control"
+              placeholder="11111111" />
+              {
+                numbers ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Number Inputs only!
+                </div>  
+              }
+          </div>
+
+          <div className='mb-3'>
+            <label for="exampleFormControlInput1" class="form-label">Fiscal Identification Number</label>
+            <input
+              value={fiscalIdentNum}
+              onChange={(e) => {
+                if(!onlyNumbers(e.target.value)){
+                  setNumbers(false)
+                  } else {
+                    setFiscIdentNum(e.target.value);
+                    setNumbers(true)}}}
+              type="text" 
+              className="form-control"
+              placeholder="55555555" />
+              {
+                numbers ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Number Inputs only!
+                </div>  
+              }
+          </div>
+
+          <div className='mb-3'>
+            <label for="exampleFormControlInput1" class="form-label">Social Security Number</label>
+            <input
+              value={socSecNum}
+              onChange={(e) => {
+                if(!onlyNumbers(e.target.value)){
+                  setNumbers(false)
+                  } else {
+                    setSocSecNum(e.target.value);
+                    setNumbers(true)}}}
+              type="text" 
+              className="form-control"
+              placeholder="12000000000" />
+              {
+                numbers ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Number Inputs only!
+                </div>  
+              }
+          </div>
+
+          <div className='mb-3'>
+            <label for="exampleFormControlInput1" class="form-label">Bank IBAN</label>
+            <input
+              value={bankIBAN}
+              onChange={(e) => setBankIBAN(e.target.value)}
+              type="text" 
+              className="form-control"
+              placeholder="PT50 0000 0000 0000 0000 0000 0" />
+          </div> 
+          
 
           <button className="btn btn-outline-secondary" type="submit">
             Submit
