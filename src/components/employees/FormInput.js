@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
 import ReactFlagsSelect from "react-flags-select";
-
 import DatePicker from "react-date-picker";
 // import "react-datepicker/dist/react-datepicker.css";
 
@@ -134,6 +133,10 @@ export default function FormInput(props){
   function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
   }  
+  function validateEmail(){
+    var validator = require("email-validator");
+    return validator.validate(email);
+  }
 
   return (
     <div>
@@ -252,10 +255,18 @@ export default function FormInput(props){
             <input 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              type="email" 
               className="form-control"
               placeholder="name@address.com" />
           </div>
+              {
+                validateEmail({email}) ? 
+                <></>
+                :
+                <div class="alert alert-danger mt-3" role="alert">
+                    Please enter valid email
+                </div>  
+              }
+
 
           <div className="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Phone</label>
