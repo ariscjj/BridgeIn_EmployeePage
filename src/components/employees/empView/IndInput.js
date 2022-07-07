@@ -15,14 +15,14 @@ import FormInput from './../FormInput';
 
 export default function IndInput(){
   const [first, setFirst] = useState(true);
-  const [success, setSuccess] = useState(true);
   const [id, setId] = useState("");
+  const d = new Date();
+  let time = d.getTime() + "";
 
   // const navigate = useNavigate();
   async function onEmpCreate(id, downloadUrl, name, birthday, address, postalCode, city, country, role, email, phone, status) {
-      const d = new Date();
-      let time = d.getTime() + "";
-
+    // const d = new Date();
+    // let time = d.getTime() + "";
       await EmployeeService.createEmployee(
         new Employee(
           time,
@@ -40,6 +40,9 @@ export default function IndInput(){
         ));
     setId(time);
     setFirst(false);
+    console.log("TIME");
+    console.log(time);
+    console.log(id);
     console.log(first);
     // navigate('/ind-edit');
   }
@@ -76,7 +79,7 @@ export default function IndInput(){
           :
             <div>
               <h5 class="card-title text-center">Edit an Employee</h5>
-              <FormInput empId={id} onEmployeeFormSubmit={onEmpEdit}/>
+              <FormInput empId={time} onEmployeeFormSubmit={onEmpEdit}/>
             </div>
         }
       </div>

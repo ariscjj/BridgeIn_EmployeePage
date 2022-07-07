@@ -1,5 +1,6 @@
 import {
   collection, addDoc,
+  setDoc,
   query, getDocs,
   doc, updateDoc,
   deleteDoc
@@ -15,34 +16,38 @@ class EmployeeService {
   }
 
   async createEmployee(employee) {
-    const collectionRef = collection(db, this.collection);
-    // const docRef = await addDoc(collectionRef, 
-    //   {
-    //     id: employee.id,
-    //     photo: employee.photo,
-    //     name: employee.name,
-    //     country: employee.country,
-    //     role: employee.role,
-    //     email: employee.email,
-    //     phone: employee.phone,
-    //     status: employee.status
-    //   }
-    // );
+    const docRef = doc(db, this.collection, employee.id); 
+    await setDoc(docRef, 
+      {
+        id: employee.id,
+        photo: employee.photo,
+        name: employee.name,
+        birthday: employee.birthday,
+        address: employee.address,
+        postalCode: employee.postalCode,
+        city: employee.city,
+        country: employee.country,
+        role: employee.role,
+        email: employee.email,
+        phone: employee.phone,
+        status: employee.status
+      }
+    );
 
-    await addDoc(collectionRef, {
-      id: employee.id,
-      photo: employee.photo,
-      name: employee.name,
-      birthday: employee.birthday,
-      address: employee.address,
-      city: employee.city,
-      postalCode: employee.postalCode,
-      country: employee.country,
-      role: employee.role,
-      email: employee.email,
-      phone: employee.phone,
-      status: employee.status
-    });
+    // await addDoc(collectionRef, {
+    //   id: employee.id,
+    //   photo: employee.photo,
+    //   name: employee.name,
+    //   birthday: employee.birthday,
+    //   address: employee.address,
+    //   city: employee.city,
+    //   postalCode: employee.postalCode,
+    //   country: employee.country,
+    //   role: employee.role,
+    //   email: employee.email,
+    //   phone: employee.phone,
+    //   status: employee.status
+    // });
     console.log("adding doc");
     return employee;
   }

@@ -3,7 +3,6 @@ import Flag from "react-world-flags";
 
 import StatusBox from "../../common/StatusBox";
 import EmployeeService from '../../services/employee.service.js'; 
-import EditEmployeeService from '../../services/editEmployee.service.js'; 
 import FormTable from './FormTable';
 
 

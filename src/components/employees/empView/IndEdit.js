@@ -36,8 +36,6 @@ export default function IndInput(){
     setId(id);
   }
 
-
-
   return (
     <div className="container my-5">
       <div className="card card-body text-left">

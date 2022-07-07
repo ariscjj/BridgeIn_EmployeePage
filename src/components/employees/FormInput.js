@@ -58,8 +58,9 @@ export default function FormInput(props){
       setName(emp.name);
       // setBirthday(emp.birthday);
       setAddress(emp.address);
-      setCity(emp.city);
+
       setPostalCode(emp.postalCode);
+      setCity(emp.city);
       setCountry(emp.country);
       setRole(emp.role);
       setEmail(emp.email);
@@ -109,8 +110,8 @@ export default function FormInput(props){
     setName('');
     setBirthday('');
     setAddress('');
-    setCity('');
     setPostalCode('');
+    setCity('');
     setCountry('');
     setRole('');
     setEmail('');

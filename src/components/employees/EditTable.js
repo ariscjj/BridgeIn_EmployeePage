@@ -15,7 +15,7 @@ export default function EditTable(){
   return (
     <div className="container my-5">
       <div className="card card-body text-center">
-        <h5 className="card-title">Employees</h5>
+        <h5 className="card-title">Pending Approval</h5>
         <table className="table">
           <FormTable approve={ true } fetchEmployees={fetchEmployees} />
         </table>
