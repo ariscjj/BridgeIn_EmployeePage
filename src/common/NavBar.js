@@ -1,4 +1,3 @@
-//import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
@@ -29,10 +28,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link className="nav-link active" to="/ind-input">IndividualView</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link active" to="/ind-edit">IndEdit</Link>
-            </li>
-
 
           </ul>
         </div>

@@ -28,12 +28,7 @@ export default function FormInput(props){
   const [status, setStatus] = useState("");
   const [numbers, setNumbers] = useState(true);
   const [letters, setLetters] = useState(true);
-  // const [idDocUpNum, setIDDocUpNum] = useState("");
-  // const [fiscalIdentNum, setFiscIdentNum] = useState("");
-  // const [socSecNum, setSocSecNum] = useState("");
-  // const [bankIBAN, setBankIBAN] = useState("");
   const [employees, setEmployees] = useState([]);
-
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -47,18 +42,11 @@ export default function FormInput(props){
     setEmployees(employees);
      if(props.empId !== "") {
       let empId = props.empId
-      console.log("EDITING ID");
-      console.log(id);
       let emp = employees.find((employee) => employee.id === empId)
       setId(empId);
       setPhoto(emp.photo);
-      console.log("EMP PHOTO");
-      console.log(emp.photo);
-      console.log(photo);
       setName(emp.name);
-      // setBirthday(emp.birthday);
       setAddress(emp.address);
-
       setPostalCode(emp.postalCode);
       setCity(emp.city);
       setCountry(emp.country);
@@ -66,10 +54,6 @@ export default function FormInput(props){
       setEmail(emp.email);
       setPhone(emp.phone);
       setStatus(emp.status);
-      // setIDDocUpNum(emp.idDocUpNum);
-      // setFiscIdentNum(emp.fiscalIdentNum);
-      // setSocSecNum(emp.socSecNum);
-      // setBankIBAN(emp.bankIBAN);
      }
 
   
@@ -99,28 +83,8 @@ export default function FormInput(props){
       email, 
       phone, 
       status,
-      // idDocUpNum,
-      // fiscalIdentNum,
-      // socSecNum,
-      // bankIBAN
       )
     setSuccess(true);
-
-    // setPhoto('');
-    // setName('');
-    // setBirthday('');
-    // setAddress('');
-    // setPostalCode('');
-    // setCity('');
-    // setCountry('');
-    // setRole('');
-    // setEmail('');
-    // setPhone('');
-    // setStatus('');
-    // setIDDocUpNum('');
-    // setFiscIdentNum('');
-    // setSocSecNum('');
-    // setBankIBAN('');
     } catch (err) {
       // TODO handle this
     }
@@ -293,86 +257,6 @@ export default function FormInput(props){
                 <option value="Terminating">Terminated</option>
               </select>
           </div>
-
-{/*                       
-          <div className='mb-3'>
-            <label for="exampleFormControlInput1" class="form-label">ID Document Upload Number</label>
-            <input
-              value={idDocUpNum}
-              onChange={(e) => {
-                if(!onlyNumbers(e.target.value)){
-                  setNumbers(false)
-                  } else {
-                    setIDDocUpNum(e.target.value);
-                    setNumbers(true)}}}
-              type="text" 
-              className="form-control"
-              placeholder="11111111" />
-              {
-                numbers ? 
-                <></>
-                :
-                <div class="alert alert-danger mt-3" role="alert">
-                    Number Inputs only!
-                </div>  
-              }
-          </div>
-
-          <div className='mb-3'>
-            <label for="exampleFormControlInput1" class="form-label">Fiscal Identification Number</label>
-            <input
-              value={fiscalIdentNum}
-              onChange={(e) => {
-                if(!onlyNumbers(e.target.value)){
-                  setNumbers(false)
-                  } else {
-                    setFiscIdentNum(e.target.value);
-                    setNumbers(true)}}}
-              type="text" 
-              className="form-control"
-              placeholder="55555555" />
-              {
-                numbers ? 
-                <></>
-                :
-                <div class="alert alert-danger mt-3" role="alert">
-                    Number Inputs only!
-                </div>  
-              }
-          </div>
-
-          <div className='mb-3'>
-            <label for="exampleFormControlInput1" class="form-label">Social Security Number</label>
-            <input
-              value={socSecNum}
-              onChange={(e) => {
-                if(!onlyNumbers(e.target.value)){
-                  setNumbers(false)
-                  } else {
-                    setSocSecNum(e.target.value);
-                    setNumbers(true)}}}
-              type="text" 
-              className="form-control"
-              placeholder="12000000000" />
-              {
-                numbers ? 
-                <></>
-                :
-                <div class="alert alert-danger mt-3" role="alert">
-                    Number Inputs only!
-                </div>  
-              }
-          </div>
-
-          <div className='mb-3'>
-            <label for="exampleFormControlInput1" class="form-label">Bank IBAN</label>
-            <input
-              value={bankIBAN}
-              onChange={(e) => setBankIBAN(e.target.value)}
-              type="text" 
-              className="form-control"
-              placeholder="PT50 0000 0000 0000 0000 0000 0" />
-          </div>  */}
           
           <button className="btn btn-outline-secondary" type="submit">
             Submit
